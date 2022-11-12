@@ -22,7 +22,19 @@ Plug('glepnir/zephyr-nvim')
 Plug('neovim/nvim-lspconfig')
 Plug('williamboman/nvim-lsp-installer')
 Plug('glepnir/lspsaga.nvim', { ['branch'] = 'main' })
-Plug('hrsh7th/nvim-cmp')
+-- Completion
+Plug("hrsh7th/nvim-cmp") -- The completion plugin
+Plug("hrsh7th/cmp-buffer") -- buffer completions
+Plug("hrsh7th/cmp-path") -- path completions
+Plug("hrsh7th/cmp-cmdline") -- cmdline completions
+Plug("saadparwaiz1/cmp_luasnip") -- snippet completions
+Plug('saecki/crates.nvim', { ['tag'] = 'v0.3.0' })
+Plug('hrsh7th/cmp-nvim-lsp')
+---- Specific lang
+------ Zig
+-- Plug('zigland/zig.vim')
+------ end Zig
+---- end Specific lang
 -- specific lang
 Plug('ray-x/go.nvim')
 Plug('ray-x/guihua.lua')
@@ -41,6 +53,7 @@ Plug('ibhagwan/fzf-lua')
 Plug('ap/vim-css-color')
 -- Powerline
 Plug('feline-nvim/feline.nvim')
+Plug ('nvim-tree/nvim-web-devicons')
 -- Git
 -- @test are these two the same?
 Plug('lewis6991/gitsigns.nvim')
@@ -56,4 +69,9 @@ Call('plug#end')
 -- will be found under plugins folder.
 --   if on windows prepare.ps1 will move the files to correct place
 --   @todo: haven't tested it on linux yet
-require('feline_setup')
+require 'user.setting'
+require 'user.keys'
+require 'user.colors'
+require 'user.feline_setup'
+require 'user.lsp'
+require 'user.cmp'
