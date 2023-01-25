@@ -226,7 +226,6 @@ in
       nerdfonts
       spicetify-cli
       blueman
-      premake5
     #  thunderbird
     ];
   };
@@ -255,7 +254,6 @@ in
       cinnamon.nemo
       steam
       zsh
-      helix
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

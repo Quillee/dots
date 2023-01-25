@@ -1,11 +1,11 @@
+/**
+ * article on how to get to directory this file should be pasted into
+ * https://medium.com/@Aenon/firefox-hide-native-tabs-and-titlebar-f0b00bdbb88b
+ */ 
+
 #TabsToolbar {
     visibility: collapse;
 }
-
-#titlebar {
-    visibility: collapse;
-}
-
 
 /* Testing */
 /*

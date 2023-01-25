@@ -19,27 +19,40 @@ Plug('savq/melange')
 Plug('Mofiqul/dracula.nvim')
 Plug('glepnir/zephyr-nvim')
 -- LSP
-Plug('neovim/nvim-lspconfig')
-Plug('williamboman/nvim-lsp-installer')
-Plug('glepnir/lspsaga.nvim', { ['branch'] = 'main' })
--- Completion
-Plug("hrsh7th/nvim-cmp") -- The completion plugin
-Plug("hrsh7th/cmp-buffer") -- buffer completions
-Plug("hrsh7th/cmp-path") -- path completions
-Plug("hrsh7th/cmp-cmdline") -- cmdline completions
-Plug("saadparwaiz1/cmp_luasnip") -- snippet completions
-Plug('saecki/crates.nvim', { ['tag'] = 'v0.3.0' })
-Plug('hrsh7th/cmp-nvim-lsp')
+Plug('VonHeikemen/lsp-zero.nvim')
+    -- lsp support
+    Plug('neovim/nvim-lspconfig')
+    Plug('williamboman/mason.nvim')
+    Plug('williamboman/mason-lspconfig.nvim')
+
+    -- auto completion
+    Plug("hrsh7th/nvim-cmp") -- The completion plugin
+    Plug('jose-elias-alvarez/null-ls.nvim')
+    Plug('glepnir/lspsaga.nvim', { ['branch'] = 'main' })
+    Plug('hrsh7th/cmp-nvim-lsp')
+    Plug("hrsh7th/cmp-buffer") -- buffer completions
+    Plug("hrsh7th/cmp-path") -- path completions
+    Plug("hrsh7th/cmp-cmdline") -- cmdline completions
+    Plug("saadparwaiz1/cmp_luasnip") -- snippet completions
+
+    -- snippets
+    Plug("L3MON4D3/LuaSnip")
+    Plug("rafamadriz/friendly-snippets")
+-- debugger support
+Plug('mfussenegger/nvim-dap')
 ---- Specific lang
+-- Rust
+Plug('saecki/crates.nvim', { ['tag'] = 'v0.3.0' })
+-- end rust
 ------ Zig
 -- Plug('zigland/zig.vim')
 ------ end Zig
----- end Specific lang
--- specific lang
 Plug('ray-x/go.nvim')
+---- end Specific lang
 Plug('ray-x/guihua.lua')
 -- Linter & other features
 Plug('nvim-treesitter/nvim-treesitter')
+-- Plug('nvim-treesitter/playground')
 -- Markdown viewer
 Plug('frabjous/knap')
 -- File manager and deps
@@ -51,6 +64,7 @@ Plug('ryanoasis/vim-devicons')
 -- fuzzy finder
 Plug('ibhagwan/fzf-lua')
 Plug('ap/vim-css-color')
+Plug('theprimeagen/harpoon')
 -- Powerline
 Plug('feline-nvim/feline.nvim')
 Plug ('nvim-tree/nvim-web-devicons')
@@ -72,6 +86,3 @@ Call('plug#end')
 require 'user.setting'
 require 'user.keys'
 require 'user.colors'
-require 'user.feline_setup'
-require 'user.lsp'
-require 'user.cmp'
