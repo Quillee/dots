@@ -1,0 +1,41 @@
+theme = "rose"
+
+[editor]
+line-number = "relative"
+cursorline = true
+rulers = [120]
+#bufferline = "multiple"
+color-modes = true
+
+[editor.statusline]
+left = ["mode", "spacer", "separator", "spacer", "spinner", "diagnostics"]
+center = ["file-name"]
+right = ["spacer", "separator", "spacer", "selections", "spacer", 
+  "separator", "spacer", "position", "position-percentage", "spacer", "separator", 
+  "spacer", "file-type", "file-line-ending"]
+separator = ""
+##       
+## 﫶  ﳑ    
+# spinner = "\ue0d0"
+# mode.normal = "N"
+# mode.insert = "i"
+# mode.select = "v"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "hidden"
+
+[editor.lsp]
+display-messages = true
+
+[editor.whitespace.render]
+newline = "none"
+nbsp = "none"
+space = "all"
+tab = "all"
+[editor.whitespace.characters]
+space = "·"
+nbsp = "⍽"
+tab = "→"
+tabpad = "·"
