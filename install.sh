@@ -7,8 +7,10 @@ curl -L https://nixos.org/nix/install | sh
 # install packages
 nix-env -iA nixpkgs.nushell  \
 	nixpkgs.neovim   \
-	nixpkgs.tmux     \
+	nixpkgs.kitty    \
+        nixpkgs.tmux     \
 	nixpkgs.zsh      \
+	nixpkgs.awesome  \
 	nixpkgs.antibody \
 	nixpkgs.fzf      \
 	nixpkgs.yarn     \
@@ -16,9 +18,9 @@ nix-env -iA nixpkgs.nushell  \
 	nixpkgs.bat      \
 	nixpkgs.direnv   \
 	nixpkgs.lua      \
-    nixpkgs.clang    \
-    nixpkgs.rust     \
-    nixpkgs.zig
+	nixpkgs.clang    \
+        nixpkgs.rust     \
+	nixpkgs.zig
 
 # install vim-plug
 curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
