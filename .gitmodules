@@ -1,0 +1,6 @@
+[submodule "zsh/pi"]
+	path = zsh/pi
+	url = https://github.com/tobyjamesthomas/pi.git
+[submodule "zsh/jovial"]
+	path = zsh/jovial
+	url = https://github.com/zthxxx/jovial.git
