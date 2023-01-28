@@ -7,7 +7,8 @@ curl -L https://nixos.org/nix/install | sh
 # install some things system-wide cause nix can't properly setup
 # Arch
 #
-# sudo pacman -Sy kitty clang firefox rofi
+# sudo pacman -Sy yay kitty clang firefox rofi ttf-firacode-nerd ttf-iosevka-nerd
+# yay -Sy nerd-fonts-jetbrains-mono-160
 #
 
 # echo locale archive env var for nix to know where to look
@@ -18,24 +19,27 @@ echo "LOCALE_ARCHIVE=/usr/lib/locale-archive" >> /etc/profile
 nix-env -iA nixpkgs.nushell  \
     nixpkgs.libstdcxx5                    \
     nixpkgs.nodejs                        \
-	nixpkgs.neovim                        \
+    nixpkgs.neovim                        \
     nixpkgs.neovide                       \
     nixpkgs.helix                         \
     nixpkgs.tmux                          \
-	nixpkgs.zsh                           \
-	nixpkgs.awesome                       \
-	nixpkgs.antibody                      \
-	nixpkgs.fzf                           \
-	nixpkgs.yarn                          \
-	nixpkgs.ripgrep                       \
-	nixpkgs.bat                           \
-	nixpkgs.direnv                        \
-	nixpkgs.lua                           \
+    nixpkgs.zsh                           \
+    nixpkgs.zathura                       \
+    nixpkgs.awesome                       \
+    nixpkgs.antibody                      \
+    nixpkgs.fzf                           \
+    nixpkgs.yarn                          \
+    nixpkgs.ripgrep                       \
+    nixpkgs.bat                           \
+    nixpkgs.direnv                        \
+    nixpkgs.lua                           \
     nixpkgs.sumneko-lua-language-server   \
     nixpkgs.rnix-lsp                      \
     nixpkgs.rust                          \
     nixpkgs.cargo                         \
-	nixpkgs.zig                           \
+    nixpkgs.eww                           \
+    nixpkgs.flameshot                     \
+    nixpkgs.zig                           \
     nixpkgs.zls                           \
     nixpkgs.autojump                      \
     nixpkgs.spotify                       \
