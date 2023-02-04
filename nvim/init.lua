@@ -86,3 +86,4 @@ Call('plug#end')
 require 'user.setting'
 require 'user.keys'
 require 'user.colors'
+require 'colorizer'.setup()

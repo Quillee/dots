@@ -85,8 +85,11 @@ bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
 bindsym F7 exec "xbacklight -inc 10; notify-send 'brightness up'"
 bindsym F6 exec "xbacklight -dec 10; notify-send 'brightness down'"
 
+# setting up display and macros
+bindsym F4 exec xrandr --output eDP-1 --scale 0.65x0.65 --size 3840x2160
+bindsym $mod+F4 exec arandr
+
 # fullscreen from function controls
-# bindsym F4 
 bindsym $mod+f fullscreen toggle
 #navigate workspaces next / previous
 bindsym F2 workspace next
@@ -279,11 +282,11 @@ mode "resize" {
 }
 
 # Lock screen
-bindsym F11 exec --no-startup-id blurlock
+bindsym XF86Tools exec --no-startup-id blurlock
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+exec --no-startup-id nitrogen ~/dots/bg; sleep 1; compton -b -c ~/.config/compton.conf
 #exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
