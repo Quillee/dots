@@ -27,6 +27,7 @@ Plug('VonHeikemen/lsp-zero.nvim')
 
     -- auto completion
     Plug("hrsh7th/nvim-cmp") -- The completion plugin
+    Plug('onsails/lspkind.nvim') -- lsp kind stuff
     Plug('jose-elias-alvarez/null-ls.nvim')
     Plug('glepnir/lspsaga.nvim', { ['branch'] = 'main' })
     Plug('hrsh7th/cmp-nvim-lsp')
@@ -41,13 +42,14 @@ Plug('VonHeikemen/lsp-zero.nvim')
 -- debugger support
 Plug('mfussenegger/nvim-dap')
 ---- Specific lang
--- Rust
-Plug('saecki/crates.nvim', { ['tag'] = 'v0.3.0' })
--- end rust
------- Zig
--- Plug('zigland/zig.vim')
------- end Zig
-Plug('ray-x/go.nvim')
+    -- Rust
+    Plug('saecki/crates.nvim', { ['tag'] = 'v0.3.0' })
+    -- end rust
+    ------ Zig
+    -- Plug('zigland/zig.vim')
+    ------ end Zig
+    Plug('ray-x/go.nvim')
+    Plug('mattn/emmet-vim')
 ---- end Specific lang
 Plug('ray-x/guihua.lua')
 -- Linter & other features
