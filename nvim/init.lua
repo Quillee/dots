@@ -8,6 +8,7 @@ Call('plug#begin', '~/.vim/plugged')
 Plug('nvim-lua/plenary.nvim')
 -- Quick file search
 Plug('nvim-telescope/telescope.nvim')
+Plug('nvim-telescope/telescope-fzy-native.nvim')
 -- Incremental search
 Plug('haya14busa/incsearch.vim')
 -- Colorschemes
