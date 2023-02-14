@@ -6,7 +6,8 @@ local Call = vim.call
 Call('plug#begin', '~/.vim/plugged')
 -- Deps
 Plug('nvim-lua/plenary.nvim')
--- Quick file search
+-- Comments
+Plug('tpope/vim-commentary')
 Plug('nvim-telescope/telescope.nvim')
 Plug('nvim-telescope/telescope-fzy-native.nvim')
 -- Incremental search
@@ -72,6 +73,7 @@ Plug('theprimeagen/harpoon')
 Plug('feline-nvim/feline.nvim')
 Plug ('nvim-tree/nvim-web-devicons')
 -- Git
+Plug('lewis6991/gitsigns.nvim')
 -- @test are these two the same?
 Plug('lewis6991/gitsigns.nvim')
 Plug('tpope/vim-fugitive')
@@ -82,11 +84,13 @@ Plug('mbbill/undotree')
 Plug('rcarriga/nvim-notify')
 Call('plug#end')
 
--- setup plugins
--- will be found under plugins folder.
---   if on windows prepare.ps1 will move the files to correct place
---   @todo: haven't tested it on linux yet
+-- user scripts
 require 'user.setting'
 require 'user.keys'
 require 'user.colors'
+
+-- plugins that depend on user scripts
+require 'user.feline_setup'
+
+-- setup for plugins
 require 'colorizer'.setup()
