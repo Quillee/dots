@@ -70,6 +70,7 @@ Plug('ibhagwan/fzf-lua')
 Plug('ap/vim-css-color')
 Plug('theprimeagen/harpoon')
 -- Powerline
+Plug('iron-e/nvim-highlite')
 Plug('feline-nvim/feline.nvim')
 Plug ('nvim-tree/nvim-web-devicons')
 -- Git

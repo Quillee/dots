@@ -41,64 +41,52 @@ local vi_mode_text = {
 local lsp = require 'feline.providers.lsp'
 local vi_mode_utils = require 'feline.providers.vi_mode'
 local cursor = require 'feline.providers.cursor'
-
+local function vimode_hl()
+    return {
+        name = vi_mode_utils.get_mode_highlight_name(),
+        fg = vi_mode_utils.get_mode_color()
+    }
+end
 local vi_mode = {
     left = {
-        provider = function()
-            return ' ' .. vi_mode_text[vim.fn.mode()] .. ' '
-        end,
-        hl = function()
-            return {
-                name = vi_mode_utils.get_mode_highlight_name(),
-                fg = _c.fg,
-                bg = vi_mode_utils.get_mode_color(),
-                style = 'bold'
-            }
-        end,
-        right_sep = ' sep '
+        provider = '▊',
+        hl = vimode_hl,
+        right_sep = ' '
     },
     right = {
         provider = '▊',
-        hl = function()
-            return {
-                name = vi_mode_utils.get_mode_highlight_name(),
-                fg = vi_mode_utils.get_mode_color()
-            }
-        end,
-        left_sep = ' || '
+        hl = vimode_hl,
+        left_sep = ' '
     }
 }
-
 local file = {
     info = {
-        provider = file_utils.get_current_ufn,
+        provider = 'file_info',
         hl = {
             fg = _c.blue,
             style = 'bold'
-        },
-        left_sep = ' '
+        }
     },
     encoding = {
         provider = 'file_encoding',
+        left_sep = ' ',
         hl = {
             fg = _c.violet,
-            style = 'italic'
-        },
-        left_sep = ' '
+            style = 'bold'
+        }
     },
     type = {
         provider = 'file_type'
     },
     os = {
         provider = file_utils.file_osinfo,
+        left_sep = ' ',
         hl = {
             fg = _c.violet,
             style = 'bold'
-        },
-        left_sep = ' ',
+        }
     }
 }
-
 local line_percentage = {
     provider = 'line_percentage',
     left_sep = ' ',
@@ -106,31 +94,40 @@ local line_percentage = {
         style = 'bold'
     }
 }
-
-local position = {
-    provider = function()
-        pos = cursor.position()
-        return ' ' .. pos .. ' '
-    end,
-    left_sep = ' ',
-    hl = function()
-        return {
-            name = vi_mode_utils.get_mode_highlight_name(),
-            fg = _c.bg,
-            bg = vi_mode_utils.get_mode_color(),
-            style = 'bold'
-        }
-    end
-}
-
 local scroll_bar = {
     provider = 'scroll_bar',
+    left_sep = ' ',
     hl = {
         fg = _c.blue,
         style = 'bold'
-    },
-    left_sep = ' '
+    }
 }
+local lsp = {
+        name = {
+            provider = 'lsp_client_names',
+            left_sep = ' ',
+            icon = 'H',
+            hl = {
+                fg = _c.yellow
+            }
+        }
+    }
+
+local properties = {
+    force_inactive = {
+        filetypes = {
+            'NvimTree',
+            'dbui',
+            'packer',
+            'startify',
+            'fugitive',
+            'fugitiveblame'
+        },
+        buftypes = {'terminal'},
+        bufnames = {}
+    }
+}
+
 
 local diag = {
     err = {
@@ -215,6 +212,7 @@ local git = {
 
 return {
     vi_mode_colors = vi_mode_colors,
+    properties = properties,
     comp = {
         left = {
             active = {
@@ -244,7 +242,7 @@ return {
                 scroll_bar,
                 line_percentage,
                 vi_mode.right,
-                position
+                -- position
             },
             inactive = {
                 file.os
