@@ -7,8 +7,9 @@
 
 	/* IMPORTS */
 --]]
-
+--
 local highlight = require('highlite').highlight
+local is_git_repo = require('feline.providers.git').git_info_exists()
 
 --[[/* CONSTANTS */]]
 
@@ -27,12 +28,13 @@ local BUF_ICON =
 
 -- Defined in https://github.com/Iron-E/nvim-highlite
 local BLACK       = {'#202020', 235, 'black'}
-local GRAY        = {'#808080', 244, 'gray'}
-local GRAY_DARK   = {'#353535', 236, 'darkgrey'}
+local GRAY_DARK   = {'#14151B', 236, 'darkgrey'}
 --local GRAY_DARKER = {'#505050', 239, 'gray'}
-local GRAY_LIGHT  = {'#c0c0c0', 250, 'gray'}
+local GRAY_LIGHT  = {'#93949A', 250, 'gray'}
 local WHITE       = {'#ffffff', 231, 'white'}
+local GRAY = { '#44475c', 204, 'gray' }
 
+local DARK_TAN = { '#E9A22A', 225, 'darktan'}
 local TAN = {'#f4c069', 221, 'yellow'}
 
 local RED       = {'#ee4a59', 203, 'red'}
@@ -59,19 +61,20 @@ local PINK         = {'#ffa6ff', 219, 'magenta'}
 local PINK_LIGHT   = {'#ffb7b7', 217, 'white'}
 local PURPLE       = {'#cf55f0', 171, 'magenta'}
 local PURPLE_LIGHT = {'#af60af', 133, 'darkmagenta'}
+local PURPLE_DARK = { '#341440', 80, 'darkpurple' }
 
-local SIDEBAR = BLACK
-local MIDBAR = GRAY_DARK
+local SIDEBAR = PURPLE_DARK
+local MIDBAR = GRAY
 local TEXT = GRAY_LIGHT
 
 local MODES =
 { -- {{{
-	['c']  = {'COMMAND-LINE',      RED},
+	['c']  = {'',      GREEN}, -- COMMAND-LINE
 	['ce'] = {'NORMAL EX',         RED_DARK},
 	['cv'] = {'EX',                RED_LIGHT},
-	['i']  = {'INSERT',            GREEN},
-	['ic'] = {'INS-COMPLETE',      GREEN_LIGHT},
-	['n']  = {'NORMAL',            PURPLE_LIGHT},
+	['i']  = {'',            ICE}, -- EDIT
+	['ic'] = {'INS-COMPLETE',      RED_LIGHT},
+	['n']  = {'',            PURPLE_LIGHT}, -- NORMAL
 	['no'] = {'OPERATOR-PENDING',  PURPLE},
 	['r']  = {'HIT-ENTER',         CYAN},
 	['r?'] = {':CONFIRM',          CYAN},
@@ -82,10 +85,10 @@ local MODES =
 	['S']  = {'SELECT',            TURQOISE},
 	[''] = {'SELECT',            TURQOISE},
 	['t']  = {'TERMINAL',          ORANGE},
-	['v']  = {'',            BLUE},
-	['V']  = {'VISUAL LINE',       BLUE},
-	[''] = {'VISUAL BLOCK',      BLUE},
-	['!']  = {'SHELL',             YELLOW},
+	['v']  = {'',            PINK}, -- Visual
+	['V']  = {'',       MAGENTA}, -- visual line
+	[''] = {'',      MAGENTA_DARK}, -- visual block
+	['!']  = {'',             YELLOW}, -- shell
 
 	-- libmodal
 	['BUFFERS'] = TEAL,
@@ -94,7 +97,7 @@ local MODES =
 } -- }}}
 
 local LEFT_SEPARATOR = ''
-local RIGHT_SEPARATOR = ''
+local RIGHT_SEPARATOR =  ''
 
 --[[/* HELPERS */]]
 
@@ -129,6 +132,10 @@ local function file_icon()
 	return vim.b.file_icon
 end
 
+local function is_git_enabled()
+    return checkwidth() and is_git_repo
+end
+
 --[[/* FELINE CONFIG */]]
 
 vim.api.nvim_set_hl(0, 'FelineViMode', {})
@@ -141,7 +148,7 @@ require('feline').setup(
 		{
 			{ -- Left {{{
 				{
-					icon = '▊ ',
+					icon = ' ',
 					hl = 'FelineViMode',
 					provider = function() -- auto change color according the vim mode
 						local mode_color, mode_name
@@ -156,14 +163,13 @@ require('feline').setup(
 							mode_color = current_mode[2]
 						end
 
-						highlight('FelineViMode', {fg = mode_color, style = 'bold'})
+						highlight('FelineViMode', {fg = mode_color, bg = MIDBAR,  style = 'bold'})
 
 						return mode_name..' '
 					end,
 					right_sep = function()
-						return
-						{
-							hl = {fg = SIDEBAR[1], bg = file_color()},
+						return {
+							hl = {fg = MIDBAR[1], bg = file_color()},
 							str = RIGHT_SEPARATOR,
 						}
 					end,
@@ -173,10 +179,9 @@ require('feline').setup(
 					hl = function() return {fg = SIDEBAR[1], bg = file_color()} end,
 					provider  = function() return ' '..file_icon()..' ' end,
 					right_sep = function()
-						return
-						{
-							hl = {fg = SIDEBAR[1], bg = file_color()},
-							str = LEFT_SEPARATOR,
+						return {
+							hl = {fg = file_color(), bg = file_color()},
+							str = ' ',
 						}
 					end,
 				},
@@ -184,107 +189,135 @@ require('feline').setup(
 				{
 					colored_icon = false,
 					enabled = buffer_not_empty,
+                    icon = '',
 					file_modified_icon = '',
-					hl = {fg = TEXT[1], bg = SIDEBAR[1], style = 'bold'},
-					icon = '',
-					left_sep =
-					{
-						hl = {bg = SIDEBAR[1]},
-						str = ' ',
-					},
+					hl = {fg = SIDEBAR[1], bg = file_color() },
 					provider  = 'file_info',
-					right_sep =
-					{
-						hl = {bg = SIDEBAR[1]},
-						str = ' ',
+					right_sep = {
+						hl = {fg = file_color(), bg = MIDBAR[1]},
+						str = RIGHT_SEPARATOR,
 					},
 					type = 'relative-short',
 				},
 
-				{
-					enabled = buffer_not_empty,
-					hl = {fg = TEXT[1], bg = SIDEBAR[1], style = 'bold'},
-					provider  = 'file_size',
-					right_sep =
-					{
-						hl = {bg = SIDEBAR[1]},
-						str = ' ',
-					},
-				},
+                -- do I care about file size all the time?
+				-- {
+				-- 	enabled = buffer_not_empty,
+				-- 	hl = {fg = TEXT[1], bg = file_color(), style = 'bold'},
+				-- 	provider  = 'file_size',
+				-- 	right_sep =
+				-- 	{
+				-- 		hl = {bg = SIDEBAR[1]},
+				-- 		str = ' ',
+				-- 	},
+				-- },
 
 				{
 					hl = {fg = SIDEBAR[1], bg = GREEN_DARK[1], style = 'bold'},
 					icon = '  ',
-					left_sep =
-					{
-						always_visible = true,
+					left_sep = {
 						hl = {fg = SIDEBAR[1], bg = GREEN_DARK[1]},
 						str = RIGHT_SEPARATOR,
 					},
+                    enabled = is_git_enabled,
 					provider = 'git_branch',
 				},
 
-				{
-					hl = {bg = MIDBAR[1]},
-					left_sep =
-					{
-						always_visible = true,
-						hl = {fg = MIDBAR[1], bg = GREEN_DARK[1]},
-						str = ' '..LEFT_SEPARATOR,
-					},
-					provider = '',
-				},
+                -- This ends the green section, do we want this?
+				-- {
+				-- 	hl = {bg = MIDBAR[1]},
+				-- 	left_sep =
+				-- 	{
+				-- 		always_visible = true,
+				-- 		hl = {fg = MIDBAR[1], bg = GREEN_DARK[1]},
+				-- 		str = ' '..LEFT_SEPARATOR,
+				-- 	},
+				-- 	provider = '',
+				-- },
 
 				{
-					enabled = checkwidth,
+					enabled = is_git_enabled,
 					hl = {fg = GREEN_LIGHT[1], bg = MIDBAR[1]},
-					icon = '',
+					icon = '  ',
 					provider = 'git_diff_added',
 				},
 
 				{
-					enabled = checkwidth,
-					hl = {fg = GRAY_LIGHT[1], bg = MIDBAR[1]},
-					icon = '',
-					provider = 'git_diff_ignored',
-				},
-
-				{
-					enabled = checkwidth,
+					enabled = is_git_enabled,
 					hl = {fg = ORANGE_LIGHT[1], bg = MIDBAR[1]},
-					icon = '',
+					icon = '  ',
 					provider = 'git_diff_changed',
 				},
 
 				{
-					enabled = checkwidth,
+					enabled = is_git_enabled,
 					hl = {fg = RED_LIGHT[1], bg = MIDBAR[1]},
-					icon = '',
+					icon = '  ',
 					provider = 'git_diff_removed',
 				},
 
 				{
-					hl = {fg = RED[1], bg = MIDBAR[1]},
-					icon = ' Ⓧ ',
+					hl = {fg = MIDBAR[1], bg = RED[1]},
+					icon = ' ﲍ ', -- ' Ⓧ ',
 					provider = 'diagnostic_errors',
+					left_sep = {
+                        hl = {fg = MIDBAR[1], bg = RED[1]},
+                        str = RIGHT_SEPARATOR,
+                    },
+					right_sep = {
+                        hl = {fg = RED[1], bg = MIDBAR[1]},
+                        str = RIGHT_SEPARATOR,
+                    },
 				},
 
 				{
-					hl = {fg = YELLOW[1], bg = MIDBAR[1]},
-					icon = ' ⚠️ ',
+					hl = {fg = MIDBAR[1], bg = YELLOW[1]},
+					icon = ' 裂 ',
 					provider = 'diagnostic_warnings',
+					left_sep = {
+                        hl = {fg = MIDBAR[1], bg = YELLOW[1]},
+                        str = RIGHT_SEPARATOR,
+                    },
+					right_sep = {
+                        hl = {fg = YELLOW[1], bg = MIDBAR[1]},
+                        str = RIGHT_SEPARATOR,
+                    },
 				},
 
 				{
-					hl = {fg = WHITE[1], bg = MIDBAR[1]},
+					hl = {fg = MIDBAR[1], bg = BLUE[1]},
 					icon = ' ⓘ ',
 					provider = 'diagnostic_info',
+					left_sep = {
+                        hl = {fg = MIDBAR[1], bg = BLUE[1]},
+                        str = RIGHT_SEPARATOR,
+                    },
+					right_sep = {
+                        hl = {fg = BLUE[1], bg = MIDBAR[1]},
+                        str = RIGHT_SEPARATOR,
+                    },
 				},
 
 				{
-					hl = {fg = MAGENTA[1], bg = MIDBAR[1]},
-					icon = ' 💡',
+					hl = {fg = MIDBAR[1], bg = CYAN[1] },
+					icon = '  ',
 					provider = 'diagnostic_hints',
+					left_sep = {
+                        hl = {fg = MIDBAR[1], bg = CYAN[1]},
+                        str = RIGHT_SEPARATOR,
+                    },
+					right_sep = {
+                        hl = {fg = CYAN[1], bg = MIDBAR[1]},
+                        str = RIGHT_SEPARATOR,
+                    },
+				},
+
+				{
+					hl = {fg = TEXT[1], bg = MIDBAR[1] },
+					right_sep = {
+                        hl = {bg = MIDBAR[1]},
+                        str = ' ',
+                    },
 				},
 			}, -- }}}
 
@@ -295,8 +328,8 @@ require('feline').setup(
 					hl = {fg = TEXT[1], bg = SIDEBAR[1]},
 					left_sep =
 					{
-						hl = {fg = MIDBAR[1], bg = SIDEBAR[1]},
-						str = RIGHT_SEPARATOR..' ',
+						hl = {fg =MIDBAR[1] , bg = SIDEBAR[1]},
+						str = ' ',
 					},
 					provider = 'file_encoding',
 					right_sep =
@@ -306,48 +339,46 @@ require('feline').setup(
 					},
 				},
 
-				{
-					hl = function() return {fg = BLACK[1], bg = file_color(), style = 'bold'} end,
-					left_sep = function() return
-						{
-							hl = {fg = file_color(), bg = SIDEBAR[1]},
-							str = LEFT_SEPARATOR,
-						}
-					end,
-					provider = 'file_type',
-					right_sep = function() return
-						{
-							hl = {fg = file_color(), bg = SIDEBAR[1]},
-							str = RIGHT_SEPARATOR..' ',
-						}
-					end,
-				},
+                {
+                    hl = {fg = TEXT[1], bg = SIDEBAR[1], style = 'bold'},
+                    left_sep = {
+                        hl = {fg = TEXT[1], bg = SIDEBAR[1]},
+                        str = ' ',
+                    },
+                    right_sep = {
+                        hl = {fg = TEXT[1], bg = SIDEBAR[1]},
+                        str = ' ',
+                    },
+                    provider = 'search_count',
+                },
 
 				{
 					enabled = buffer_not_empty,
-					hl = {fg = TEXT[1], bg = SIDEBAR[1]},
+                    left_sep = {
+                        str = LEFT_SEPARATOR,
+                        hl = { fg = DARK_TAN[1], bg = SIDEBAR[1] }
+                    },
+					hl = {fg = BLACK[1], bg = DARK_TAN[1]},
 					provider = function()
-						return ' '..(vim.api.nvim_win_get_cursor(0)[2] + 1)
+						return '  '..(vim.api.nvim_win_get_cursor(0)[2] + 1)
 					end,
 				},
 
 				{
-					hl = {fg = WHITE[1], bg = MAGENTA_DARK[1]},
-					left_sep =
-					{
-						hl = {fg = MAGENTA_DARK[1], bg = SIDEBAR[1]},
-						str = ' '..LEFT_SEPARATOR,
-					},
+					hl = {fg = BLACK[1], bg = DARK_TAN[1]},
 					provider = 'line_percentage',
-					right_sep =
-					{
-						hl = {bg = MAGENTA_DARK[1]},
+					left_sep = {
+						hl = {bg = DARK_TAN[1], fg = BLACK[1]},
+						str = ':',
+					},
+					right_sep = {
+						hl = {bg = DARK_TAN[1], fg = BLACK[1]},
 						str = ' ',
 					},
 				},
 
 				{
-					hl = {fg = GRAY[1], bg = MAGENTA_DARK[1]},
+					hl = {fg = BLACK[1], bg = DARK_TAN[1]},
 					provider = 'scroll_bar',
 				},
 			}, -- }}}

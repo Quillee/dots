@@ -76,7 +76,6 @@ Plug ('nvim-tree/nvim-web-devicons')
 -- Git
 Plug('lewis6991/gitsigns.nvim')
 -- @test are these two the same?
-Plug('lewis6991/gitsigns.nvim')
 Plug('tpope/vim-fugitive')
 -- DB
 Plug('tpope/vim-dadbod')
@@ -91,6 +90,7 @@ require 'user.keys'
 require 'user.colors'
 
 -- plugins that depend on user scripts
+require 'gitsigns'.setup()
 require 'user.feline_setup'
 
 -- setup for plugins
