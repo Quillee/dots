@@ -61,8 +61,8 @@ local lua_snip = require 'luasnip'
 
 lsp.set_preferences {
     sign_icons = {
-        error = '', -- '',  -- '',
-        warn = '', -- '',
+        error = 'ﲍ', -- '', -- '',  -- '',
+        warn = '裂',  -- '', -- '',
         hint = '',
         info = '' -- ''
     }
