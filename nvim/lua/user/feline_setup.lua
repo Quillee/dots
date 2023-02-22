@@ -286,7 +286,7 @@ require('feline').setup(
 
 				{
 					hl = {fg = MIDBAR[1], bg = BLUE[1]},
-					icon = ' ⓘ ',
+					icon = '  ',
 					provider = 'diagnostic_info',
 					left_sep = {
                         hl = {fg = MIDBAR[1], bg = BLUE[1]},
