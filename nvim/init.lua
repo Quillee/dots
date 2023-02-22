@@ -22,36 +22,36 @@ Plug('Mofiqul/dracula.nvim')
 Plug('glepnir/zephyr-nvim')
 -- LSP
 Plug('VonHeikemen/lsp-zero.nvim')
-    -- lsp support
-    Plug('neovim/nvim-lspconfig')
-    Plug('williamboman/mason.nvim')
-    Plug('williamboman/mason-lspconfig.nvim')
+-- lsp support
+Plug('neovim/nvim-lspconfig')
+Plug('williamboman/mason.nvim')
+Plug('williamboman/mason-lspconfig.nvim')
 
-    -- auto completion
-    Plug("hrsh7th/nvim-cmp") -- The completion plugin
-    Plug('onsails/lspkind.nvim') -- lsp kind stuff
-    Plug('jose-elias-alvarez/null-ls.nvim')
-    Plug('glepnir/lspsaga.nvim', { ['branch'] = 'main' })
-    Plug('hrsh7th/cmp-nvim-lsp')
-    Plug("hrsh7th/cmp-buffer") -- buffer completions
-    Plug("hrsh7th/cmp-path") -- path completions
-    Plug("hrsh7th/cmp-cmdline") -- cmdline completions
-    Plug("saadparwaiz1/cmp_luasnip") -- snippet completions
+-- auto completion
+Plug("hrsh7th/nvim-cmp") -- The completion plugin
+Plug('onsails/lspkind.nvim') -- lsp kind stuff
+Plug('jose-elias-alvarez/null-ls.nvim')
+Plug('glepnir/lspsaga.nvim', { ['branch'] = 'main' })
+Plug('hrsh7th/cmp-nvim-lsp')
+Plug("hrsh7th/cmp-buffer") -- buffer completions
+Plug("hrsh7th/cmp-path") -- path completions
+Plug("hrsh7th/cmp-cmdline") -- cmdline completions
+Plug("saadparwaiz1/cmp_luasnip") -- snippet completions
 
-    -- snippets
-    Plug("L3MON4D3/LuaSnip")
-    Plug("rafamadriz/friendly-snippets")
+-- snippets
+Plug("L3MON4D3/LuaSnip")
+Plug("rafamadriz/friendly-snippets")
 -- debugger support
 Plug('mfussenegger/nvim-dap')
 ---- Specific lang
-    -- Rust
-    Plug('saecki/crates.nvim', { ['tag'] = 'v0.3.0' })
-    -- end rust
-    ------ Zig
-    -- Plug('zigland/zig.vim')
-    ------ end Zig
-    Plug('ray-x/go.nvim')
-    Plug('mattn/emmet-vim')
+-- Rust
+Plug('saecki/crates.nvim', { ['tag'] = 'v0.3.0' })
+-- end rust
+------ Zig
+-- Plug('zigland/zig.vim')
+------ end Zig
+Plug('ray-x/go.nvim')
+Plug('mattn/emmet-vim')
 ---- end Specific lang
 Plug('ray-x/guihua.lua')
 -- Linter & other features
@@ -72,7 +72,7 @@ Plug('theprimeagen/harpoon')
 -- Powerline
 Plug('iron-e/nvim-highlite')
 Plug('feline-nvim/feline.nvim')
-Plug ('nvim-tree/nvim-web-devicons')
+Plug('nvim-tree/nvim-web-devicons')
 -- Git
 Plug('lewis6991/gitsigns.nvim')
 -- @test are these two the same?
@@ -95,3 +95,6 @@ require 'user.feline_setup'
 
 -- setup for plugins
 require 'colorizer'.setup()
+
+-- @todo: move to autorun
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
