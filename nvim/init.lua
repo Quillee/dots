@@ -9,6 +9,9 @@ Plug('nvim-lua/plenary.nvim')
 -- Comments
 Plug('tpope/vim-commentary')
 Plug('nvim-telescope/telescope.nvim')
+Plug('nvim-telescope/telescope-fzf-native.nvim', {
+    ['do'] = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+})
 Plug('nvim-telescope/telescope-fzy-native.nvim')
 -- Incremental search
 Plug('haya14busa/incsearch.vim')

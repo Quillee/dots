@@ -47,14 +47,21 @@ telescope.setup {
         }
     },
     extensions = {
-        fzy_native = {
+        -- fzy_native = {
+        --     override_generic_sorter = false,
+        --     override_file_sorter = true
+        -- },
+        fzf = {
+            fuzzy = true,
             override_generic_sorter = false,
-            override_file_sorter = true
+            override_file_sorter = true,
+            case_mode = "smart_case",
         }
     }
 }
 
-telescope.load_extension 'fzy_native'
+-- telescope.load_extension 'fzy_native'
+telescope.load_extension 'fzf'
 
 local builtin = require 'telescope.builtin'
 vim.keymap.set('n', '<leader>lf', builtin.find_files, {})
@@ -78,6 +85,3 @@ vim.keymap.set('n', '<leader>gc', builtin.git_bcommits, {})
 vim.keymap.set('n', '<leader>gb', builtin.git_branches, {})
 vim.keymap.set('n', '<leader>gs', builtin.git_status, {})
 vim.keymap.set('n', '<leader>gt', builtin.git_stash, {})
-
-
-
