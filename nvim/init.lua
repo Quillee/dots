@@ -54,6 +54,7 @@ Plug('saecki/crates.nvim', { ['tag'] = 'v0.3.0' })
 -- Plug('zigland/zig.vim')
 ------ end Zig
 Plug('ray-x/go.nvim')
+Plug('purescript-contrib/purescript-vim')
 Plug('mattn/emmet-vim')
 ---- end Specific lang
 Plug('ray-x/guihua.lua')

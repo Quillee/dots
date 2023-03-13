@@ -116,15 +116,21 @@ end
 local function set_devicons()
     local icon, color = require('nvim-web-devicons').get_icon(vim.fn.expand '%:t', vim.fn.expand '%:e',
         { default = true })
+
+    if vim.bo.filetype == 'purescript' or vim.bo.filetype == 'haskell' then
+        icon = '  '
+        vim.b.file_color = PURPLE_LIGHT[1]
+    else
+        vim.b.file_color = string.format('#%06x', vim.api.nvim_get_hl_by_name(color, true).foreground)
+    end
+
     vim.b.file_icon = icon
-    vim.b.file_color = string.format('#%06x', vim.api.nvim_get_hl_by_name(color, true).foreground)
-    print(vim.api.nvim_get_hl_by_name(color, true))
 end
 
 --- @return string color
 local function file_color()
     if not vim.b.file_color then set_devicons() end
-
+    
     return vim.b.file_color
 end
 
@@ -210,13 +216,19 @@ require('feline').setup(
                         file_modified_icon = function() return '' end,
                         hl                 = function() return { fg = SIDEBAR[1], bg = file_color() } end,
                         provider           = 'file_info',
-                        right_sep          = function()
+                        type               = 'unique-short',
+                    },
+
+                    {
+
+                        provider  = function() return ' ' end,
+                        hl        = function() return { fg = SIDEBAR[1], bg = file_color() } end,
+                        right_sep = function()
                             return {
                                 hl = { fg = file_color(), bg = get_next_bg_by_diag(1) },
                                 str = RIGHT_SEPARATOR,
                             }
                         end,
-                        type               = 'unique-short',
                     },
 
                     -- do I care about file size all the time?
