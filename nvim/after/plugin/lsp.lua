@@ -50,7 +50,7 @@ local symbol_map = {
 }
 
 local cmp = require 'cmp'
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
@@ -62,7 +62,7 @@ local lua_snip = require 'luasnip'
 lsp.set_preferences {
     sign_icons = {
         error = 'ﲍ', -- '', -- '',  -- '',
-        warn = '裂',  -- '', -- '',
+        warn = '裂', -- '', -- '',
         hint = '',
         info = '' -- ''
     }
@@ -94,7 +94,7 @@ lsp.setup_nvim_cmp({
         end
     },
     formatting = {
-        fields = {'kind', 'abbr', 'menu'},
+        fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, vim_item)
             print(vim_item)
             vim_item.kind = symbol_map[vim_item.kind]
@@ -107,18 +107,20 @@ lsp.setup_nvim_cmp({
 -- attaches on every buffer, so if LSP isn't configured for current buffer,
 --  it'll use the defaults of nvim
 lsp.on_attach(function(client, bufnr)
-    local opts = {buffer = bufnr, remap = false}
+    local opts = { buffer = bufnr, remap = false }
 
     vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
     vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
     vim.keymap.set('n', '<leader>vws', function() vim.lsp.buf.workspace_symbol() end, opts)
     vim.keymap.set('n', ']d', function() vim.diagnostic.goto_next() end, opts)
     vim.keymap.set('n', '[d', function() vim.diagnostic.goto_prev() end, opts)
+    vim.keymap.set('n', '<leader>vd', function() vim.lsp.buf.open_float() end, opts)
     vim.keymap.set('n', '<leader>vca', function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set('n', '<leader>vrr', function() vim.lsp.buf.references() end, opts)
     vim.keymap.set('n', '<leader>vrn', function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set('i', '<C-h', function() vim.lsp.buf.signature_help() end, opts)
+    vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
 end)
 
 lsp.setup()
 
+vim.diagnostic.config({ virtual_text = true })
