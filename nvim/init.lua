@@ -101,4 +101,4 @@ require 'user.feline_setup'
 require 'colorizer'.setup()
 
 -- @todo: move to autorun
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+-- vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
