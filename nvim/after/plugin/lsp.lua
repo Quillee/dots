@@ -96,7 +96,6 @@ lsp.setup_nvim_cmp({
     formatting = {
         fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, vim_item)
-            print(vim_item)
             vim_item.kind = symbol_map[vim_item.kind]
             vim_item.menu = symbol_map[entry.source.name]
             return vim_item
