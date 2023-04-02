@@ -79,7 +79,6 @@ Plug('feline-nvim/feline.nvim')
 Plug('nvim-tree/nvim-web-devicons')
 -- Git
 Plug('lewis6991/gitsigns.nvim')
--- @test are these two the same?
 Plug('tpope/vim-fugitive')
 -- DB
 Plug('tpope/vim-dadbod')
@@ -101,4 +100,5 @@ require 'user.feline_setup'
 require 'colorizer'.setup()
 
 -- @todo: move to autorun
+-- @note: this will format the entire file, and we need to just format changes
 -- vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
