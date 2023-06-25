@@ -51,7 +51,7 @@ Plug('mfussenegger/nvim-dap')
 Plug('saecki/crates.nvim', { ['tag'] = 'v0.3.0' })
 -- end rust
 ------ Zig
--- Plug('zigland/zig.vim')
+Plug('zigland/zig.vim')
 ------ end Zig
 Plug('ray-x/go.nvim')
 Plug('purescript-contrib/purescript-vim')
