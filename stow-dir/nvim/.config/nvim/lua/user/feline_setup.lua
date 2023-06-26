@@ -8,7 +8,7 @@
 	/* IMPORTS */
 --]]
 --
-local highlight = require('highlite').highlight
+-- local highlight = require('highlite').highlight
 local is_git_repo = require('feline.providers.git').git_info_exists()
 local diag_lookup = require('feline.providers.lsp').diagnostics_exist
 
@@ -186,7 +186,7 @@ require('feline').setup(
                                 mode_color = current_mode[2]
                             end
 
-                            highlight('FelineViMode', { fg = mode_color, bg = MIDBAR, style = 'bold' })
+                            -- highlight('FelineViMode', { fg = mode_color, bg = MIDBAR, style = 'bold' })
 
                             return mode_name .. ' '
                         end,

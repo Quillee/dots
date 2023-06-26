@@ -7,8 +7,8 @@ lsp.ensure_installed({
     'zls',
     'sumneko_lua',
     'clangd',
-    'tsserver',
-    'eslint',
+    'eslint-lsp',
+    'deno'
     'rnix'
 })
 

@@ -126,7 +126,7 @@ nvim_lsp['jedi_language_server'].setup{
     flags = lsp_flags,
     capabilities = cap,
 }
-nvim_lsp['tsserver'].setup{
+nvim_lsp['eslint-lsp'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = cap,
