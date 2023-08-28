@@ -231,3 +231,6 @@ bindsym $mod+r mode "resize"
 # Keybindings List
 #
     bindsym $mod+t exec xed ~/.config/sway/cheatsheet
+
+# Chromebook specific keybinds
+    bindsym $mod+F5 exec swaymsg input type:touchpad events toggle enabled disabled
