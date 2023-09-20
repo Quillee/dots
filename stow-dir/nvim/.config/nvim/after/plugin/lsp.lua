@@ -8,8 +8,7 @@ lsp.ensure_installed({
     'sumneko_lua',
     'clangd',
     'eslint-lsp',
-    'deno'
-    'rnix'
+    'html'
 })
 
 --   פּ ﯟ   some other good icons

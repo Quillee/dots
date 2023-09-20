@@ -3,7 +3,7 @@
 sh <(curl -L https://nixos.org/nix/install) --daemon
 
 # source
-sudo . ~/.nix-profile/etc/profile.d/nix.sh
+#sudo . ~/.nix-profile/etc/profile.d/nix.sh
 
 # install some things system-wide cause nix can't properly setup
 # Arch
