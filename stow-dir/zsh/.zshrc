@@ -1,21 +1,20 @@
 # load nix modules
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
-# set options
-unsetopt BEEP
-
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="jovial"
+ZSH_TMUX_AUTOSTART=true
+tmux source ~/.config/tmux/.tmux.conf
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -70,7 +69,7 @@ ZSH_THEME="jovial"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+#ZSH_CUSTOM=~/.oh-my-zsh/custom/
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -79,16 +78,14 @@ ZSH_THEME="jovial"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  tmux
   autojump
   urltools
   bgnotify
   zsh-autosuggestions
   zsh-syntax-highlighting
+  zsh-history-enquirer
   jovial
-  vi-mode
-  z
-  tmux
-  thefuck
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -117,8 +114,76 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-export LC_CTYPE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+alias nvimdiff="nvim -d"
+export PATH="$PATH:$HOME/.spicetify"
+
+#### User Config
+# @TODO: maybe source this out
+
+# Syntax highlighting
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+bindkey -v
+export KEYTIMEOUT=1
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+alias brew86="arch -x86_64 /usr/local/bin/brew"
+alias pyenv86="arch -x86_64 pyenv"
+alias py86="arch -x86_64 /usr/local/Cellar/python@3.10/3.10.4/bin/python3"
+
+switchdesktop() {
+    typeset -A desktophash
+    desktophash[0]=29
+    desktophash[1]=18
+    desktophash[2]=19
+    desktophash[3]=20
+    desktophash[4]=21
+    desktophash[5]=23
+    desktophash[6]=22
+    desktophash[7]=26
+    desktophash[8]=28
+    desktophash[9]=25
+    desktopkey=${desktophash[$1]}
+    osascript -e "tell application \"System Events\" to key code $desktopkey using control down"
+}
+alias switchdesktop=switchdesktop
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export HOMEBREW_NO_AUTO_UPDATE=true
+if [ -e /opt/homebrew ]; then 
+    export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+fi
+export GIT_EDITOR="nvim"
+export GIT_PAGER="bat"
+
+alias ...="cd ../"
+alias ....="cd ../../"
+alias .....="cd ../../../"
+alias ......="cd ../../../../"
+alias commit="git commit -m"
+alias commita="git commit -am"
+alias log_graph="git log --decorate --oneline --graph --all"
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gstatus="git status"
 
