@@ -121,7 +121,6 @@ export PATH="$PATH:$HOME/.spicetify"
 # @TODO: maybe source this out
 
 # Syntax highlighting
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 bindkey -v
 export KEYTIMEOUT=1
 
@@ -146,10 +145,6 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-alias brew86="arch -x86_64 /usr/local/bin/brew"
-alias pyenv86="arch -x86_64 pyenv"
-alias py86="arch -x86_64 /usr/local/Cellar/python@3.10/3.10.4/bin/python3"
-
 switchdesktop() {
     typeset -A desktophash
     desktophash[0]=29
@@ -173,7 +168,12 @@ export NVM_DIR="$HOME/.nvm"
 export HOMEBREW_NO_AUTO_UPDATE=true
 if [ -e /opt/homebrew ]; then 
     export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    alias brew86="arch -x86_64 /usr/local/bin/brew"
+    alias pyenv86="arch -x86_64 pyenv"
+    alias py86="arch -x86_64 /usr/local/Cellar/python@3.10/3.10.4/bin/python3"
 fi
+
 export GIT_EDITOR="nvim"
 export GIT_PAGER="bat"
 
