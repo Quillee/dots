@@ -14,7 +14,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="jovial"
 ZSH_TMUX_AUTOSTART=true
-tmux source ~/.config/tmux/.tmux.conf
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -77,6 +76,7 @@ tmux source ~/.config/tmux/.tmux.conf
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  zsh-history-enquirer
   git
   tmux
   autojump
@@ -84,7 +84,6 @@ plugins=(
   bgnotify
   zsh-autosuggestions
   zsh-syntax-highlighting
-  zsh-history-enquirer
   jovial
 )
 
@@ -172,6 +171,7 @@ if [ -e /opt/homebrew ]; then
     alias brew86="arch -x86_64 /usr/local/bin/brew"
     alias pyenv86="arch -x86_64 pyenv"
     alias py86="arch -x86_64 /usr/local/Cellar/python@3.10/3.10.4/bin/python3"
+    tmux source ~/.config/tmux/.tmux.conf
 fi
 
 export GIT_EDITOR="nvim"

@@ -29,6 +29,7 @@ Plug('VonHeikemen/lsp-zero.nvim')
 Plug('neovim/nvim-lspconfig')
 Plug('williamboman/mason.nvim')
 Plug('williamboman/mason-lspconfig.nvim')
+Plug('ThePrimeagen/lsp-debug-tools.nvim')
 
 -- auto completion
 Plug("hrsh7th/nvim-cmp") -- The completion plugin
