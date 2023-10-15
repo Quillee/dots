@@ -1,11 +1,11 @@
 return {
-	"glepnir/lspsaga.nvim",
+	'glepnir/lspsaga.nvim',
 	dependencies = {
-		"nvim-treesitter/nvim-treesitter", -- optional
-		"nvim-tree/nvim-web-devicons", -- optional
+		'nvim-treesitter/nvim-treesitter', -- optional
+		'nvim-tree/nvim-web-devicons', -- optional
 	},
 	config = function()
-		local lspsaga = require("lspsaga")
+		local lspsaga = require('lspsaga')
 		lspsaga.setup({
 			debug = false,
 			use_saga_diagnostic_sign = true,
@@ -14,29 +14,29 @@ return {
             warn_sign = '裂', -- '', -- '',
             hint_sign = '',
             infor_sign = ' ', -- ''
-			diagnostic_header_icon = "   ",
+			diagnostic_header_icon = '   ',
 			-- code action title icon
-			code_action_icon = " ",
+			code_action_icon = ' ',
 			code_action_prompt = { enable = true, sign = true, sign_priority = 40, virtual_text = true },
-			finder_definition_icon = "  ",
-			finder_reference_icon = "  ",
+			finder_definition_icon = '  ',
+			finder_reference_icon = '  ',
 			max_preview_lines = 10,
 			finder_action_keys = {
-				open = "o",
-				vsplit = "s",
-				split = "i",
-				quit = "q",
-				scroll_down = "<C-f>",
-				scroll_up = "<C-b>",
+				open = 'o',
+				vsplit = 's',
+				split = 'i',
+				quit = 'q',
+				scroll_down = '<C-f>',
+				scroll_up = '<C-b>',
 			},
 
-			code_action_keys = { quit = "q", exec = "<CR>" },
-			rename_action_keys = { quit = "<C-c>", exec = "<CR>" },
-			definition_preview_icon = "  ",
-			border_style = "single",
-			rename_prompt_prefix = "➤",
+			code_action_keys = { quit = 'q', exec = '<CR>' },
+			rename_action_keys = { quit = '<C-c>', exec = '<CR>' },
+			definition_preview_icon = '  ',
+			border_style = 'single',
+			rename_prompt_prefix = '➤',
 			server_filetype_map = {},
-			diagnostic_prefix_format = "%d. ",
+			diagnostic_prefix_format = '%d. ',
 		})
 	end,
 }

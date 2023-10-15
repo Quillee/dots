@@ -9,14 +9,39 @@ return {
 	},
 
 	config = function()
-		local telescope = require("telescope")
-		local actions = require("telescope.actions")
-        local builtin = require 'telescope.builtin'
+		local telescope = require "telescope"
+		local actions = require "telescope.actions"
+        local builtin = require "telescope.builtin"
+
+        vim.keymap.set("n", "<leader>lf", builtin.find_files, {})
+        vim.keymap.set("n", "<C-p>", builtin.git_files, {})
+        vim.keymap.set("n", "<leader>ls",
+            function()
+                builtin.grep_string({ search = vim.fn.input("(╯🔥ᖨ🔥)╯┻━┻ ") });
+            end, {})
+        vim.keymap.set("n", "<leader>ll", builtin.live_grep, {})
+        vim.keymap.set("n", "<leader>lb", builtin.buffers, {})
+        vim.keymap.set("n", "<leader>lcb", builtin.current_buffer_fuzzy_find, {})
+        vim.keymap.set("n", "<leader>lcl", builtin.jumplist, {})
+        vim.keymap.set("n", "<leader>lr", builtin.registers, {})
+
+        -- lsp mappings
+        vim.keymap.set("n", "<leader>ld", builtin.lsp_definitions, {})
+        vim.keymap.set("n", "<leader>lr", builtin.lsp_references, {})
+
+        -- diagnostics
+        vim.keymap.set("n", "<leader>di", builtin.diagnostics, {})
+
+        -- git
+        vim.keymap.set("n", "<leader>gc", builtin.git_bcommits, {})
+        vim.keymap.set("n", "<leader>gb", builtin.git_branches, {})
+        vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
+        vim.keymap.set("n", "<leader>gt", builtin.git_stash, {})
 
 		telescope.setup({
 			defaults = {
-                prompt_prefix = '(•◡•)/ ',
-                selection_caret = 'ᕗ ',
+                prompt_prefix = "(•◡•)/ ",
+                selection_caret = "ᕗ ",
                 path_display = { "smart" },
                 file_ignore_patterns = {
                     "node_modules",
@@ -43,19 +68,19 @@ return {
                     "%.tar.gz"
                 },
                 vimgrep_arguments = {
-                    'rg',
-                    '--color=never',
-                    '--no-heading',
-                    '--with-filename',
-                    '--line-number',
-                    '--column',
-                    '--smart-case',
-                    '--ignore-file',
-                    '.gitignore'
+                    "rg",
+                    "--color=never",
+                    "--no-heading",
+                    "--with-filename",
+                    "--line-number",
+                    "--column",
+                    "--smart-case",
+                    "--ignore-file",
+                    ".gitignore"
                 },
 				layout_config = {
 					width = 0.80,
-					prompt_position = "top",
+					prompt_position = "bottom",
 					preview_cutoff = 120,
 					horizontal = { mirror = false },
 					vertical = { mirror = false },
@@ -69,7 +94,6 @@ return {
 					"--smart-case",
 				},
 				entry_prefix = "  ",
-				initial_mode = "insert",
 				selection_strategy = "reset",
 				sorting_strategy = "descending",
 				layout_strategy = "horizontal",
@@ -93,32 +117,6 @@ return {
 						["<esc>"] = actions.close,
 						["<CR>"] = actions.select_default + actions.center,
 					},
-					n = {
-						["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-                        ['<leader>lf'] = builtin.find_files,
-                        ['<C-p>'] = builtin.git_files,
-                        ['<leader>ls'] = function()
-                                builtin.grep_string({ search = vim.fn.input("(╯🔥ᖨ🔥)╯┻━┻ ") });
-                            end,
-                        ['<leader>ll']  = builtin.live_grep,
-                        ['<leader>lb']  = builtin.buffers,
-                        ['<leader>lcb'] = builtin.current_buffer_fuzzy_find,
-                        ['<leader>lj']  = builtin.jump_list,
-                        ['<leader>lr']  = builtin.registers,
-                        --
-                        -- lsp mappings
-                        ['<leader>lgd']  = builtin.lsp_definitions,
-                        ['<leader>lgr']  = builtin.lsp_references,
-
-                        -- diagnostics
-                        ['<leader>di']  = builtin.diagnostics,
-
-                        -- git
-                        ['<leader>gc']  = builtin.git_bcommits,
-                        ['<leader>gb']  = builtin.git_branches,
-                        ['<leader>gs']  = builtin.git_status,
-                        ['<leader>gt']  = builtin.git_stash,
-					},
 				},
 			},
             extensions = {
@@ -137,4 +135,5 @@ return {
 
 		telescope.load_extension("fzf")
 	end,
+
 }

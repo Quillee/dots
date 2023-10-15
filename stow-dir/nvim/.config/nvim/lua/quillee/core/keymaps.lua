@@ -14,9 +14,6 @@ map("v", ">", ">gv", { noremap = true, silent = false })
 map("v", "<C-c>", '"+y', { noremap = true, silent = false })
 map("n", "<C-s>", '"+P', { noremap = true, silent = false })
 
--- Unhighlight searched elements
-map("n", "<C-u>", ":nohlsearch<cr>", { noremap = true, silent = true })
-
 -- map('n', '<leader>cr',
 --     function()
 --         vim.cmd { cmd = 'so', args = { '$MYVIMRC' } }

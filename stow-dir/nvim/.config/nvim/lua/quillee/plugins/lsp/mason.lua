@@ -57,7 +57,7 @@ return {
 				{ "tailwindcss-language-server" },
                 { "zls" },
                 { "clangd" },
-                { "clangd-format" },
+                { "clang-format" },
                 { "gopls" },
                 { "gofumpt" },
                 { "go-debug-adapter" },
