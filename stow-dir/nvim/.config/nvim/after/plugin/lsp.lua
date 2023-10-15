@@ -2,12 +2,19 @@ local lsp = require 'lsp-zero'
 
 lsp.preset('recommended')
 
-lsp.ensure_installed({
-    'rust_analyzer',
-    'zls',
-    'clangd',
-    'html'
-})
+require('mason').setup {}
+require('mason-lspconfig').setup {
+    ensure_installed = { 'rust_analyzer', 'zls', 'clangd', 'html' },
+    handlers = {
+        lsp.default_setup,
+    },
+}
+-- lsp.ensure_installed({
+--     'rust_analyzer',
+--     'zls',
+--     'clangd',
+--     'html'
+-- })
 
 --   פּ ﯟ   some other good icons
 local symbol_map = {

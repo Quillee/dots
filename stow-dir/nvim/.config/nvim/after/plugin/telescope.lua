@@ -72,13 +72,16 @@ vim.keymap.set('n', '<leader>ls',
     end)
 vim.keymap.set('n', '<leader>ll', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>lb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>lcb', builtin.current_buffer_fuzzy_find, {})
+vim.keymap.set('n', '<leader>lj', builtin.jump_list, {})
+vim.keymap.set('n', '<leader>lr', builtin.registers, {})
 
 -- lsp mappings
 vim.keymap.set('n', '<leader>ld', builtin.lsp_definitions, {})
 vim.keymap.set('n', '<leader>lr', builtin.lsp_references, {})
 
 -- diagnostics
-vim.keymap.set('n', '<leader>le', builtin.diagnostics, {})
+vim.keymap.set('n', '<leader>di', builtin.diagnostics, {})
 
 -- git
 vim.keymap.set('n', '<leader>gc', builtin.git_bcommits, {})
