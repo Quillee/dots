@@ -32,7 +32,7 @@ local options = {
     wrap = false, -- display lines as one long line
     scrolloff = 8, -- is one of my fav
     sidescrolloff = 8,
-    guifont = "FiraCode Nerd Font:h22", -- the font used in graphical neovim applications
+    guifont = "FiraCode Nerd Font:h18", -- the font used in graphical neovim applications
     guibg = nil
 }
 
@@ -45,4 +45,19 @@ end
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
-vim.cmd [[colorscheme tokyonight-storm]]
+
+local status, err = pcall(
+    function()
+        if (vim.fn.has('gui_running') == 1) then
+            vim.cmd [[colorscheme falcon]]
+        else
+            vim.cmd [[colorscheme catppucin-macchiato]]
+        end
+    end
+)
+
+if status then
+    print("Colorscheme wasn't available")
+end
+
+vim.opt.termguicolors = true
