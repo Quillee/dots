@@ -49,14 +49,14 @@ vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
 local status, err = pcall(
     function()
         if (vim.fn.has('gui_running') == 1) then
-            vim.cmd [[colorscheme falcon]]
+            vim.cmd [[colorscheme noir]]
         else
             vim.cmd [[colorscheme catppucin-macchiato]]
         end
     end
 )
 
-if status then
+if err ~= nil then
     print("Colorscheme wasn't available")
 end
 

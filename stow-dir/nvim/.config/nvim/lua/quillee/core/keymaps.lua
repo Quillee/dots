@@ -1,18 +1,20 @@
 vim.g.mapleader = " "
 local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = false }
+
 -- Toggle between tabs
-map("n", "<C-h>", "<C-w>h", { noremap = true, silent = false })
-map("n", "<C-j>", "<C-w>j", { noremap = true, silent = false })
-map("n", "<C-k>", "<C-w>k", { noremap = true, silent = false })
-map("n", "<C-l>", "<C-w>l", { noremap = true, silent = false })
+map("n", "<C-h>", "<C-w>h", opts)
+map("n", "<C-j>", "<C-w>j", opts)
+map("n", "<C-k>", "<C-w>k", opts)
+map("n", "<C-l>", "<C-w>l", opts)
 
 -- Indenting
-map("v", "<", "<gv", { noremap = true, silent = false })
-map("v", ">", ">gv", { noremap = true, silent = false })
+map("v", "<", "<gv", opts)
+map("v", ">", ">gv", opts)
 
 -- Copy-Pasting
-map("v", "<C-c>", '"+y', { noremap = true, silent = false })
-map("n", "<C-s>", '"+P', { noremap = true, silent = false })
+map("v", "<C-c>", '"+y', opts)
+map("n", "<C-s>", '"+P', opts)
 
 -- map('n', '<leader>cr',
 --     function()
