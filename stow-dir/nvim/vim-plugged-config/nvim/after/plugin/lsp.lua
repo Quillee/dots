@@ -2,14 +2,19 @@ local lsp = require 'lsp-zero'
 
 lsp.preset('recommended')
 
-lsp.ensure_installed({
-    'rust_analyzer',
-    'zls',
-    'sumneko_lua',
-    'clangd',
-    'eslint-lsp',
-    'html'
-})
+require('mason').setup {}
+require('mason-lspconfig').setup {
+    ensure_installed = { 'rust_analyzer', 'zls', 'clangd', 'html' },
+    handlers = {
+        lsp.default_setup,
+    },
+}
+-- lsp.ensure_installed({
+--     'rust_analyzer',
+--     'zls',
+--     'clangd',
+--     'html'
+-- })
 
 --   פּ ﯟ   some other good icons
 local symbol_map = {
@@ -117,6 +122,7 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set('n', '<leader>vca', function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set('n', '<leader>vrr', function() vim.lsp.buf.references() end, opts)
     vim.keymap.set('n', '<leader>vrn', function() vim.lsp.buf.rename() end, opts)
+    vim.keymap.set('n', '<leader>vf', function() vim.lsp.buf.format() end, opts)
     vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
 end)
 
