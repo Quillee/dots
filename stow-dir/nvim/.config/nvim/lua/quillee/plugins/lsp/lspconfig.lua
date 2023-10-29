@@ -36,7 +36,7 @@ local symbol_map = {
 
 return {
 	"neovim/nvim-lspconfig",
-	event = { "BufReadPre", "BufNewFile" },
+	event = { "BufNewFile" },
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
 	},
@@ -68,7 +68,7 @@ return {
 				vim.keymap.set('n', '<leader>vrr', function() vim.lsp.buf.references() end, opts)
 				vim.keymap.set('n', '<leader>vrn', function() vim.lsp.buf.rename() end, opts)
 				vim.keymap.set('n', '<leader>vf', function() vim.lsp.buf.format { async = true} end, opts)
-				vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
+				vim.keymap.set('n','<leader>ho', vim.cmd.noh, opts)
 			end
 		})
 
@@ -124,15 +124,11 @@ return {
             capabilities = capabilities
         })
 
-        -- templ
-		require('lspconfig.configs').templ = {
-			default_config = {
-                cmd = { "templ", "lsp", "-http=localhost:7878", "-log=~/.go/logs/templ-lsp" },
-                filetypes = { "templ" },
-				root_dir = lspconfig.util.root_pattern("go.mod"),
-                settings = {}
-			}
-		}
+        lspconfig.templ.setup {
+            capabilities = capabilities,
+            filetypes = { "templ" },
+        }
+
 
 		-- Tailwind
 		-- Support for tailwind auto completion
@@ -141,5 +137,13 @@ return {
 			capabilities = capabilities,
             filetypes = { "templ", "html", }
 		})
+        -- templ
+		require('lspconfig.configs').htmx = {
+			default_config = {
+                cmd = { "htmx-lsp" },
+                filetypes = { "templ", "html", "htmx" },
+                settings = {}
+			}
+		}
 	end,
 }

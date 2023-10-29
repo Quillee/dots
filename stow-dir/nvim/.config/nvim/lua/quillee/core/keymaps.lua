@@ -23,3 +23,4 @@ map("n", "<C-s>", '"+P', opts)
 
 -- -- search related bindings
 -- map('n', '<leader>ho', vim.cmd.noh, { noremap = true, silent = false })
+-- func_map('<leader>ho', vim.cmd.noh, opts)
