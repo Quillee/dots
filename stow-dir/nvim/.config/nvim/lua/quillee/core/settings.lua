@@ -51,17 +51,13 @@ local status, err = pcall(
         if (vim.fn.has('gui_running') == 1) then
             vim.cmd [[colorscheme noir]]
         else
-            vim.cmd [[colorscheme catppucin-macchiato]]
+            vim.cmd [[colorscheme neg]]
         end
     end
 )
 
 if err ~= nil then
     print("Colorscheme wasn't available")
+    print(err)
 end
 
--- please apply all colors -_-
-vim.cmd 'set t_8f=^[[38;2;%lu;%lu;%lum'
-vim.cmd 'set t_8b=^[[48;2;%lu;%lu;%lum'
-vim.cmd 'set t_Co=256'
-vim.cmd 'set termguicolors'
