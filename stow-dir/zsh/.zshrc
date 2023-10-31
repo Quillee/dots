@@ -1,11 +1,14 @@
 # load nix modules
-if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then 
+    . ~/.nix-profile/etc/profile.d/nix.sh;
+fi # added by Nix installer
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export PATH=$(echo ~/scripts):$(echo ~/.turso):$PATH
 
 
 # Set name of the theme to load --- if set to "random", it will
@@ -13,7 +16,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="jovial"
-ZSH_TMUX_AUTOSTART=true
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -76,16 +78,20 @@ ZSH_TMUX_AUTOSTART=true
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  zsh-history-enquirer
   git
-  tmux
   autojump
   urltools
   bgnotify
   zsh-autosuggestions
   zsh-syntax-highlighting
+  zsh-history-enquirer
+  tmux
   jovial
+  fzf-zsh-plugin
 )
+
+# fzf settings
+FZF_PREVIEW_ADVANCED=true
 
 source $ZSH/oh-my-zsh.sh
 
@@ -187,6 +193,4 @@ alias log_graph="git log --decorate --oneline --graph --all"
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gstatus="git status"
 
-
-# Turso
-export PATH="/home/cassie/.turso:$PATH"
+bindkey -s ^f "tmxs.sh\n"

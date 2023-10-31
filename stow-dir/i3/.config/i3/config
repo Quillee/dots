@@ -53,7 +53,7 @@ new_window pixel 3
 hide_edge_borders both
 
 # Set inner/outer gaps
-gaps inner 6
+gaps inner 8
 gaps outer 4
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -342,10 +342,7 @@ exec_always --no-startup-id ~/.screenlayout/setup.sh
 
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
-exec --no-startup-id sleep 1 && feh --bg-fill $(find ~/pics/bg/ -type f | shuf -n 1)
-
-# set powersavings for display:
-exec --no-startup-id xset s 480 dpms 600 600 600
+exec_always --no-startup-id sleep 1 && feh --bg-fill $(find ~/pics/bg/ -type f | shuf -n 1)
 
 # disable power saving (for example if using xscreensaver)
 #exec --no-startup-id xset -dpms

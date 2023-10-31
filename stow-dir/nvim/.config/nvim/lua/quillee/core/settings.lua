@@ -60,4 +60,8 @@ if err ~= nil then
     print("Colorscheme wasn't available")
 end
 
-vim.opt.termguicolors = true
+-- please apply all colors -_-
+vim.cmd 'set t_8f=^[[38;2;%lu;%lu;%lum'
+vim.cmd 'set t_8b=^[[48;2;%lu;%lu;%lum'
+vim.cmd 'set t_Co=256'
+vim.cmd 'set termguicolors'
