@@ -193,3 +193,4 @@ alias log_graph="git log --decorate --oneline --graph --all"
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gstatus="git status"
 
+bindkey -s ^f "tmxs.sh\n"
