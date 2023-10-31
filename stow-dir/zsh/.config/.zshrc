@@ -86,9 +86,8 @@ plugins=(
   zsh-syntax-highlighting
   jovial
   vi-mode
-  z
-  tmux
   thefuck
+  z
 )
 
 source $ZSH/oh-my-zsh.sh

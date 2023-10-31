@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+-- setting keymaps to other keymaps
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = false }
 
@@ -16,6 +17,8 @@ map("v", ">", ">gv", opts)
 map("v", "<C-c>", '"+y', opts)
 map("n", "<C-s>", '"+P', opts)
 
+map("n", "<C-f>", "<cmd>silent !tmux neww tmxs<CR>", { noremap = true, silent = false })
+
 -- map('n', '<leader>cr',
 --     function()
 --         vim.cmd { cmd = 'so', args = { '$MYVIMRC' } }
@@ -24,3 +27,4 @@ map("n", "<C-s>", '"+P', opts)
 -- -- search related bindings
 -- map('n', '<leader>ho', vim.cmd.noh, { noremap = true, silent = false })
 -- func_map('<leader>ho', vim.cmd.noh, opts)
+-- map_cmd("n", "<C-f>", vim.cmd 'silent !tmxs')
