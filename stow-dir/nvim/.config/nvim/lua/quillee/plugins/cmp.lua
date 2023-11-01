@@ -1,3 +1,39 @@
+local symbol_map = {
+    -- kind
+    Text = ' T ',
+    Method = '  ',
+    Function = ' 󰘧 ',
+    Constructor = '  ',
+    Field = '  ',
+    Variable = '  ',
+    Class = ' 󰣙 ',
+    Interface = '  ',
+    Module = ' 󰕳 ',
+    Property = '  ',
+    Unit = '  ',
+    Value = '',
+    Enum = '  ',
+    Keyword = '  ',
+    Snippet = '  ',
+    Color = '  ',
+    File = '  ',
+    Reference = '  ',
+    Folder = '  ',
+    EnumMember = '  ',
+    Constant = ' 󰏿 ',
+    Struct = '  ',
+    Event = '  ',
+    Operator = ' O ',
+    TypeParameter = ' 󱝅 ',
+    -- menu
+    buffer = '  ',
+    nvim_lsp = '  ',
+    luasnip = '  ',
+    nvim_lua = '  ',
+    latex_symbols = '  ',
+    path = ' 󰙅 '
+}
+
 return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
@@ -16,6 +52,11 @@ return {
 	config = function()
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
+        require("lspkind").init {
+            mode = 'symbol_text',
+            preset = 'default',
+            symbol_map = symbol_map,
+        }
 		local lspkind = require("lspkind")
 		local vscodesnippets = require("luasnip.loaders.from_vscode")
 
@@ -51,7 +92,10 @@ return {
 			}),
 
 			formatting = {
-				format = lspkind.cmp_format({ with_text = true, maxwidth = 50 }),
+				format = lspkind.cmp_format({ 
+                    with_text = true, 
+                    maxwidth = 50,
+                }),
 			},
 		})
 

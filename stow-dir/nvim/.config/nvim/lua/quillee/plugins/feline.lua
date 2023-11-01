@@ -23,7 +23,8 @@ return {
             dbui           = '  ',
             diff           = ' 繁',
             help           = '  ',
-            NvimTree       = ' פּ ',
+            NvimTree       = '  ',
+            CHADTree       = '  ',
             qf             = '  ',
             undotree       = '  ',
             vista          = '  ',
@@ -74,12 +75,12 @@ return {
 
         local MODES =
         { -- {{{
-            ['c']  = { '', GREEN }, -- COMMAND-LINE
+            ['c']  = { '  ', GREEN }, -- COMMAND-LINE
             ['ce'] = { 'NORMAL EX', RED_DARK },
             ['cv'] = { 'EX', RED_LIGHT },
             ['i']  = { '', ICE }, -- EDIT
             ['ic'] = { 'INS-COMPLETE', RED_LIGHT },
-            ['n']  = { '', PURPLE_LIGHT }, -- NORMAL
+            ['n']  = { ' 󱅾 ', PURPLE_LIGHT }, -- NORMAL
             ['no'] = { 'OPERATOR-PENDING', PURPLE },
             ['r']  = { 'HIT-ENTER', CYAN },
             ['r?'] = { ':CONFIRM', CYAN },
@@ -92,7 +93,7 @@ return {
             ['t']  = { 'TERMINAL', ORANGE },
             ['v']  = { '', PINK }, -- Visual
             ['V']  = { '', MAGENTA }, -- visual line
-            ['']  = { '', MAGENTA_DARK }, -- visual block
+            ['']  = { '󰋃', MAGENTA_DARK }, -- visual block
             ['!']  = { '', YELLOW }, -- shell
 
             -- libmodal
@@ -135,7 +136,7 @@ return {
         --- @return string color
         local function file_color()
             if not vim.b.file_color then set_devicons() end
-            
+
             return vim.b.file_color
         end
 
@@ -282,7 +283,7 @@ return {
 
                             {
                                 hl = { fg = MIDBAR[1], bg = RED[1] },
-                                icon = ' ﲍ ', -- ' Ⓧ ',
+                                icon = ' 󰞏 ', -- ' Ⓧ ',
                                 provider = 'diagnostic_errors',
                                 -- left_sep = function()
                                 --     return {
@@ -300,7 +301,7 @@ return {
 
                             {
                                 hl = { fg = MIDBAR[1], bg = YELLOW[1] },
-                                icon = ' 裂 ',
+                                icon = ' 󰒡 ',
                                 provider = 'diagnostic_warnings',
                                 -- left_sep = {
                                 --     hl = { fg = MIDBAR[1], bg = YELLOW[1] },
@@ -332,7 +333,7 @@ return {
 
                             {
                                 hl = { fg = MIDBAR[1], bg = CYAN[1] },
-                                icon = '  ',
+                                icon = ' 󰅏 ',
                                 provider = 'diagnostic_hints',
                                 -- left_sep = {
                                 --     hl = { fg = MIDBAR[1], bg = CYAN[1] },

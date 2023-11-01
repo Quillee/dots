@@ -1,39 +1,3 @@
-local symbol_map = {
-    -- kind
-    Text = '',
-    Method = 'm',
-    Function = '',
-    Constructor = '',
-    Field = '',
-    Variable = '',
-    Class = '',
-    Interface = '',
-    Module = '',
-    Property = '',
-    Unit = '',
-    Value = '',
-    Enum = '',
-    Keyword = '',
-    Snippet = '',
-    Color = '',
-    File = '',
-    Reference = '',
-    Folder = '',
-    EnumMember = '',
-    Constant = '',
-    Struct = '',
-    Event = '',
-    Operator = '',
-    TypeParameter = '',
-    -- menu
-    buffer = '',
-    nvim_lsp = 'λ', -- '',
-    luasnip = '',
-    nvim_lua = '',
-    latex_symbols = '',
-    path = '🖫'
-}
-
 return {
 	"neovim/nvim-lspconfig",
 	event = { "BufNewFile" },
@@ -45,7 +9,7 @@ return {
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
-		local signs = { Error = 'ﲍ ', Warn = '裂', Hint = ' ', Info = ' ' }
+		local signs = { Error = ' 󰞏', Warn = '󰒡 ', Hint = '󰅏 ', Info = ' ' }
 		for type, icon in pairs(signs) do
 			local hl = "DiagnosticSign" .. type
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
