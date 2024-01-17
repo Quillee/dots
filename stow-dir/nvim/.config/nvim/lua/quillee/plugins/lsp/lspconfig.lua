@@ -63,6 +63,11 @@ return {
 			capabilities = capabilities,
 			filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte", "templ" },
 		})
+		-- configure emmet language server
+		lspconfig.eslint.setup({
+			capabilities = capabilities,
+			filetypes = { "typescriptreact", "javascriptreact", "svelte" },
+		})
 
 		-- Lua LS
 		lspconfig.lua_ls.setup({
