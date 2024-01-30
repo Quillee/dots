@@ -23,5 +23,3 @@ fi
 
 tmux switch-client -t $selected_name
 
-ﲍ
-裂
