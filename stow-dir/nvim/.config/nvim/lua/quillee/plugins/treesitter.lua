@@ -32,6 +32,10 @@ return {
 			},
 			sync_install = false,
 			auto_install = true,
+			highlight = {
+				enable = true,
+				additional_vim_regex_highlighting = true,
+			},
 			autotag = {
 				enable = true,
 			},
@@ -40,10 +44,6 @@ return {
 			},
 			rainbow = {
 				enable = true,
-			},
-			context_commentstring = {
-				enable = true,
-				enable_autocmd = true,
 			},
 		})
 	end,
