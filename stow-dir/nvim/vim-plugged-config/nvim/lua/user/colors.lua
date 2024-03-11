@@ -1,4 +1,4 @@
-local default_colorscheme = "dracula"
+local default_colorscheme = "slate"
 
 function color_me(color)
     color = color or default_colorscheme
