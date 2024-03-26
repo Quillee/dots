@@ -2,7 +2,7 @@
 #YABAI STUFF
 
 # bsp or float (default: bsp)
-#yabai -m config layout bsp
+yabai -m config layout bsp
 
 # My custom space names for my 3 monitor setup. These names are used in some of my scripts.
 yabai -m space 1 --label one
@@ -33,7 +33,6 @@ yabai -m rule --add app="^console$" manage=off
 yabai -m rule --add app="^Harvest$" manage=off
 yabai -m rule --add app="^CiscoSparkHelper$" manage=off
 yabai -m rule --add app="^Logi Options$" manage=off
-yabai -m rule --add app="^.*Gmail.*$" manage=off
 yabai -m rule --add app="^Private Internet Access$" manage=off
 
 #find ~/Library/Parallels/Applications\ Menus/ -maxdepth 3 -type f | awk -F'/' '{ print $NF; }' | awk '{$1=$1};1' | sort | uniq | tr "\n" "\0" | xargs -0 -I{} yabai -m rule --add app="^{}\$" title=".*" manage=on
@@ -44,12 +43,7 @@ yabai -m rule --add app="^Private Internet Access$" manage=off
 # New window spawns to the right if vertical split, or bottom if horizontal split
 yabai -m config window_placement second_child
 yabai -m config window_topmost off
-#yabai -m config window_shadow float
-yabai -m config window_opacity off
-yabai -m config window_opacity_duration 0.00
-yabai -m config active_window_opacity 0.98
-yabai -m config normal_window_opacity        0.90
-#yabai -m config window_border                on | off
+yabai -m config window_border on 
 
 ## some other settings
 yabai -m config auto_balance off
@@ -66,12 +60,12 @@ yabai -m config mouse_action1 move
 #yabai -m config --space 3 layout             float
 
 ## Change how yabai looks
-yabai -m config layout bsp
-yabai -m config top_padding 2
-yabai -m config bottom_padding 2
+#yabai -m config layout bsp
+yabai -m config top_padding 4
+yabai -m config bottom_padding 4
 yabai -m config left_padding 2
 yabai -m config right_padding 2
-yabai -m config window_gap 10
+yabai -m config window_gap 12
 
 # #Ubersicht widget bar stuff
 #yabai -m signal --add event=space_changed \
