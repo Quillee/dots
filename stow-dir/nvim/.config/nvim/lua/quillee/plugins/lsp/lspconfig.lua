@@ -41,6 +41,11 @@ return {
 		-- pyright
 		lspconfig.pyright.setup({
 			capabilities = capabilities,
+            settings = {
+                python = {
+                    pythonPath = vim.fn.exepath('python'),
+                }
+            }
 		})
 		-- tsserver
 		lspconfig.tsserver.setup({
@@ -60,7 +65,6 @@ return {
 		})
 		lspconfig.ocamllsp.setup({
 			capabilities = capabilities,
-            filetypes = { "zig" },
 		})
 
 
@@ -107,7 +111,6 @@ return {
             capabilities = capabilities,
             filetypes = { "templ" },
         }
-
 
 		-- Tailwind
 		-- Support for tailwind auto completion
