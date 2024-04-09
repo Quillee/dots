@@ -117,7 +117,7 @@ return {
 		-- install the tailwind server : "sudo npm install -g @tailwindcss/language-server"
 		lspconfig.tailwindcss.setup({
 			capabilities = capabilities,
-            filetypes = { "templ", "html", }
+            filetypes = { "templ", "html", "tsx", "jsx" }
 		})
         -- templ
 		require('lspconfig.configs').htmx = {
