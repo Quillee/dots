@@ -24,16 +24,25 @@ yabai -m rule --add app="^Disk Utility$" sticky=on layer=above manage=off
 yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Forklift3$" manage=off
-yabai -m rule --add app="^Spotify$" manage=off
-# yabai -m rule --add app="^iTerm2$" manage=off
+yabai -m rule --add app="^Spotify$" desktop=^8
 yabai -m rule --add app="^Flux$" manage=off
-yabai -m rule --add app="^Time Out$" manage=off
-yabai -m rule --add app="^perl_client_app$" manage=off
 yabai -m rule --add app="^console$" manage=off
-yabai -m rule --add app="^Harvest$" manage=off
-yabai -m rule --add app="^CiscoSparkHelper$" manage=off
 yabai -m rule --add app="^Logi Options$" manage=off
 yabai -m rule --add app="^Private Internet Access$" manage=off
+
+
+# force certain apps to certain spaces
+yabai -m rule --add app="^Neovide.*" space=10
+yabai -m rule --add app="^Google Chrome$" space=2
+yabai -m rule --add app="^Postman$" space=9
+yabai -m rule --add app="^Docker Desktop$" space=9
+yabai -m rule --add app="^Figma$" space=8
+yabai -m rule --add app="^Forklift$" space=7
+yabai -m rule --add app="^MongoDB Compass$" space=6
+yabai -m rule --add app="^Intellij IDEA$" space=4
+yabai -m rule --add app="^Microsoft Teams (work or school)$" space=3
+yabai -m rule --add app="^Microsoft Outlook$" space=3
+
 
 #find ~/Library/Parallels/Applications\ Menus/ -maxdepth 3 -type f | awk -F'/' '{ print $NF; }' | awk '{$1=$1};1' | sort | uniq | tr "\n" "\0" | xargs -0 -I{} yabai -m rule --add app="^{}\$" title=".*" manage=on
 
@@ -61,7 +70,7 @@ yabai -m config mouse_action1 move
 
 ## Change how yabai looks
 #yabai -m config layout bsp
-yabai -m config top_padding 4
+yabai -m config top_padding 38
 yabai -m config bottom_padding 4
 yabai -m config left_padding 2
 yabai -m config right_padding 2
@@ -91,6 +100,31 @@ yabai -m config window_gap 12
 yabai -m signal --add event=window_destroyed action="bash /Users/jesseskelton/CustomScripts/SwitchSpaces/window-focus-on-destroy.sh"
 # yabai -m signal --add event=space_changed action="export CUR_ACTIVE_APP=\"iTerm2\""
 
+yabai -m rule --add app="^(System Settings|System Information|Activity Monitor|FaceTime|Screen Sharing|Calculator|Stickies|TinkerTool|Progressive Downloader|Transmission|Airflow)$" manage=off
+
+yabai -m signal --add event=window_created action="sketchybar -m --trigger window_change &> /dev/null"
+yabai -m signal --add event=window_destroyed action="sketchybar -m --trigger window_change &> /dev/null"
+
+## Focus
+ctrl + alt - h : yabai -m window --focus west
+ctrl + alt - j : yabai -m window --focus south
+ctrl + alt - k : yabai -m window --focus north
+ctrl + alt - l : yabai -m window --focus east
+
+# resize window from right side
+alt + shift - h : yabai -m window --resize left:-48:0
+alt + shift - j : yabai -m window --resize right:-48:0
+alt + shift - k : yabai -m window --resize top:0:-48
+alt + shift - l : yabai -m window --resize bottom:0:-48
+
+# swap managed window
+cmd + shift - h : yabai -m window --swap west
+cmd + shift - j : yabai -m window --swap south
+cmd + shift - k : yabai -m window --swap north
+cmd + shift - l : yabai -m window --swap east
+
 echo "yabai configuration loaded.."
+
+borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0 &
 
 #END
