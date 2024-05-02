@@ -19,6 +19,12 @@ map("n", "<C-s>", '"+P', opts)
 
 map("n", "<C-f>", "<cmd>silent !tmux neww tmxs<CR>", { noremap = true, silent = false })
 
+-- terminal mappings
+map("n", "<leader>ts", "<cmd>split term://zsh<CR>", opts)
+map("n", "<leader>tv", "<cmd>vsplit term://zsh<CR>", opts)
+map("n", "<leader>tz", "<cmd>term<CR>", opts)
+map("t", "<Esc>", "<C-\\><C-n>", opts)
+
 -- map('n', '<leader>cr',
 --     function()
 --         vim.cmd { cmd = 'so', args = { '$MYVIMRC' } }
