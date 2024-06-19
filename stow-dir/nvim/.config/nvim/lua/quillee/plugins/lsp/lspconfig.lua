@@ -3,7 +3,6 @@ return {
 	event = { "BufNewFile" },
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
-        "ziglang/zig.vim",
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
@@ -59,10 +58,7 @@ return {
 				["rust-analyzer"] = {},
 			},
 		})
-		lspconfig.zls.setup({
-			capabilities = capabilities,
-            filetypes = { "zig" },
-		})
+		lspconfig.zls.setup({})
 		lspconfig.ocamllsp.setup({
 			capabilities = capabilities,
 		})
