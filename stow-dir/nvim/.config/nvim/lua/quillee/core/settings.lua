@@ -33,7 +33,7 @@ local options = {
     scrolloff = 8, -- is one of my fav
     sidescrolloff = 8,
     guifont = "FiraCode Nerd Font:h18", -- the font used in graphical neovim applications
-    guibg = nil
+    guibg = nil,
 }
 
 vim.opt.shortmess:append "c"
@@ -51,7 +51,7 @@ local status, err = pcall(
         if (vim.fn.has('gui_running') == 1) then
             vim.cmd [[colorscheme noir]]
         else
-            vim.cmd [[colorscheme neg]]
+            vim.cmd [[colorscheme falcon]]
         end
     end
 )

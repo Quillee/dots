@@ -39,13 +39,8 @@ return {
 
 		-- Managing language servers individually
 		-- pyright
-		lspconfig.pyright.setup({
+		lspconfig.pylsp.setup({
 			capabilities = capabilities,
-            settings = {
-                python = {
-                    pythonPath = vim.fn.exepath('python'),
-                }
-            }
 		})
 		-- tsserver
 		lspconfig.tsserver.setup({

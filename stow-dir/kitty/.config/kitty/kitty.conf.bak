@@ -1,6 +1,6 @@
 # BEGIN_KITTY_THEME
-# Challenger Deep
-include conf/rose-pine-moon.conf
+# Box
+include conf/current-theme.conf
 # END_KITTY_THEME
 #
 # To get a full list of supported fonts use the `kitty +list-fonts` command.
@@ -51,7 +51,8 @@ hide_window_decorations yes
 #: The foreground and background colors
 
 dynamic_background_opacity yes
-background_opacity 0.98
+background_opacity 0.87
+# background_opacity 1.0
 
 # background_image none
 
@@ -104,7 +105,7 @@ map kitty_mod+comma move_window_backward
 
 
 
-map kitty_mod+t new_tab
+map kitty_mod+t new_tab_with_cwd
 
 map kitty_mod+n new_window
 

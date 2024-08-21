@@ -1,0 +1,43 @@
+"
+let mapleader = " "
+
+" plugins 
+set easymotion
+set NERDTree
+set surround
+set multiple-cursors
+set commentary
+set argtextobj
+set exchange
+set quickscope
+
+" shutup intellij
+set visualbell
+set noerrorbells
+
+" options
+set rnu " relative numbers
+set incsearch
+set scrolloff=5
+set clipboard=unnamedplus
+set ignorecase
+set smartcase
+set showcmd
+
+set ideastatusicon=gray
+
+" mappings
+map <leader><leader> <Action>(FindInPath)
+map <leader>z <Action>(ToggleDistractionFreeMode)
+map <leader>a <Action>(Annotate)
+map <Leader>d <Action>(ShowErrorDescription)
+map <Leader>i <Action>(QuickJavaDoc)
+map <leader>h <Action>(Vcs.ShowTabbedFileHistory)
+map <leader>e <Action>(RecentFiles)
+map <leader>v <Action>(SplitVertically)
+
+map <leader>r <Action>(RenameElement)
+map <leader>l <Action>(Refactorings.QuickListPopupAction)
+
+map <C-A-j> <Action>(NextSplitter)
+map <C-A-k> <Action>(PrevSplitter)
