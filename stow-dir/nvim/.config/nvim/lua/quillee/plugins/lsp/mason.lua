@@ -43,7 +43,7 @@ return {
 				{ "html-lsp" },
 				{ "emmet-ls" },
 				{ "css-lsp" },
-				{ "pylsp" },
+				{ "pyright" },
 				{ "black" },
 				{ "autopep8" },
 				{ "json-lsp" },

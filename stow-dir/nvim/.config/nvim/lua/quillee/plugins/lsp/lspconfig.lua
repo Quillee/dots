@@ -38,7 +38,7 @@ return {
 
 		-- Managing language servers individually
 		-- pyright
-		lspconfig.pylsp.setup({
+		lspconfig.pyright.setup({
 			capabilities = capabilities,
 		})
 		-- tsserver
