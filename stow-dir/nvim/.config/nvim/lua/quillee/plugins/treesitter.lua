@@ -4,7 +4,6 @@ return {
 	dependencies = {
 		"JoosepAlviste/nvim-ts-context-commentstring",
 		"windwp/nvim-ts-autotag",
-		"hiphish/rainbow-delimiters.nvim",
 		"windwp/nvim-autopairs",
 	},
 

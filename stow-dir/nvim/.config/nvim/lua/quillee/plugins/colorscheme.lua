@@ -1,5 +1,4 @@
 return {
-    '/lalitmee/cobalt2.nvim', -- won't work without colorizer. nice blue
     'folke/tokyonight.nvim', -- deep blues and nice contrast
     'catppuccin/nvim', -- lighter porple
     'fenetikm/falcon',
