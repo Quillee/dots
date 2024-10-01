@@ -178,7 +178,8 @@ local footer_options = {
   "The act of purchasing a Software Book and \nnot reading it is one of the most celebrated software engineering pasttimes - someone probably",
   "VS Code is the BEST Code Editor made",
   "snake_case > camelCase",
-  "As a programmer, you should learn how to type properly"
+  "As a programmer, you should learn how to type properly",
+  "It is fun to be competent - DHH (David Heinemeier Hansson)",
 }
 
 
