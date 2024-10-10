@@ -2,6 +2,7 @@
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then 
     . ~/.nix-profile/etc/profile.d/nix.sh;
 fi # added by Nix installer
+autoload -U compaudit compinit compdef
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -15,7 +16,7 @@ export PATH=$(echo ~/scripts):$(echo ~/.turso):$PATH
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="jovial"
+ZSH_THEME="half-life"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -85,9 +86,6 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-history-enquirer
-  tmux
-  jovial
-  fzf-zsh-plugin
 )
 
 # fzf settings
@@ -195,3 +193,5 @@ alias gstatus="git status"
 
 bindkey -s ^f "tmxs.sh\n"
 
+# user functions
+mktch() { mkdir -p "$(dirname "$1")" && touch "$1" ; }

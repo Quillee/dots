@@ -5,7 +5,10 @@ return {
 		"nvim-lua/plenary.nvim",
 		"kdheepak/lazygit.nvim",
 		"nvim-tree/nvim-web-devicons",
-		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		{ 
+            "nvim-telescope/telescope-fzf-native.nvim", 
+            build = "make",
+        },
 	},
 
 	config = function()

@@ -1,0 +1,12 @@
+[Install]
+WantedBy=plasma-workspace.target
+
+[Unit]
+Description=Launch Plasma with i3
+Before=plasma-workspace.target
+
+[Service]
+ExecStart=/run/current-system/sw/bin/i3
+Restart=on-failure
+Slice=session.slice
+
