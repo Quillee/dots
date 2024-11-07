@@ -1,10 +1,8 @@
 return {
   "epwalsh/obsidian.nvim",
+  version="*",
   lazy = true,
-  dependencies = {
-    -- Required.
-    "nvim-lua/plenary.nvim",
-  },
+  ft="markdown",
   opts = {
     workspaces = {
       {

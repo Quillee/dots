@@ -3,6 +3,7 @@ return {
 	event = { "BufNewFile" },
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
+        "Issafalcon/lsp-overloads.nvim",
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
@@ -41,8 +42,8 @@ return {
 		lspconfig.pyright.setup({
 			capabilities = capabilities,
 		})
-		-- tsserver
-		lspconfig.tsserver.setup({
+		-- ts_ls
+		lspconfig.ts_ls.setup({
 			capabilities = capabilities,
 		})
 		-- rust_analyzer

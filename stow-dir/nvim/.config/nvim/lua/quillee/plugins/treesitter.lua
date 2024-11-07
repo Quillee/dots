@@ -27,6 +27,7 @@ return {
 				"markdown",
 				"markdown_inline",
                 "zig",
+                "mermaid",
                 "go",
 			},
 			sync_install = false,

@@ -4,7 +4,7 @@ return {
 		"3rd/image.nvim",
 		"willothy/wezterm.nvim",
 	},
-    lazy = false,
+    lazy = true,
     build = ":UpdateRemotePlugins",
     config = function ()
         vim.keymap.set("n", "<leader>mi", ":MoltenInit python<CR>",
