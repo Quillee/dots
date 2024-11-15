@@ -7,13 +7,23 @@ return {
     'dzfrias/noir.nvim', -- grey on black. very little contrast
     'adigitoleo/vim-mellow',
     'eihigh/vim-aomi-grayscale', -- slate bg with grayscale
+    'daschw/leaf.nvim',
     opt = {
         transparent = true,
         styles= {
-            comment = "italic",
-            keyword = "bold",
-            sidebars= "transparent",
-            floats = "transparent",
+            underlineStyle = "underline",
+            commentStyle = "italic",
+            functionStyle = "NONE",
+            keywordStyle = "italic",
+            statementStyle = "bold",
+            typeStyle = "NONE",
+            variablebuiltinStyle = "italic",
+            transparent = false,
+            colors = {},
+            overrides = {},
+            theme = "auto", -- default, based on vim.o.background, alternatives: "light", "dark"
+            contrast = "low", -- default, alternatives: "medium", "high"
         }
+
     }
 }

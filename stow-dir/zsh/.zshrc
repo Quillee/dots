@@ -85,9 +85,7 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-history-enquirer
-  tmux
   jovial
-  fzf-zsh-plugin
 )
 
 # fzf settings
@@ -172,7 +170,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export HOMEBREW_NO_AUTO_UPDATE=true
 if [ -e /opt/homebrew ]; then 
-    export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+    export PATH="/opt/homebrew/bin:opt/openjdk@11/bin:$PATH"
     source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     alias brew86="arch -x86_64 /usr/local/bin/brew"
     alias pyenv86="arch -x86_64 pyenv"

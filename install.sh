@@ -16,5 +16,5 @@ sh <(curl -L https://nixos.org/nix/install) --daemon
 sudo echo "LOCALE_ARCHIVE=/usr/lib/locale-archive" >> /etc/profile
 
 # install vim-plug
-curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+#curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
