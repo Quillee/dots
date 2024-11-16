@@ -1,6 +1,6 @@
 # BEGIN_KITTY_THEME
 # Box
-include conf/current-theme.conf
+include conf/seafoam.conf
 # END_KITTY_THEME
 #
 # To get a full list of supported fonts use the `kitty +list-fonts` command.

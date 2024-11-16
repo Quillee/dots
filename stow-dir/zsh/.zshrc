@@ -190,6 +190,8 @@ alias commita="git commit -am"
 alias log_graph="git log --decorate --oneline --graph --all"
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gstatus="git status"
+alias lz="eza --hyperlink --group-directories-first --git -l -h -L=3 -m -Z --icons=always -b"
+alias lza="eza -T --git-ignore --hyperlink --group-directories-first -m --git -l -h -L=2 --icons=always -b"
 
 bindkey -s ^f "tmxs.sh\n"
 
