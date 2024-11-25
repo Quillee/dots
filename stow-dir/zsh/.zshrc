@@ -171,6 +171,7 @@ export NVM_DIR="$HOME/.nvm"
 export HOMEBREW_NO_AUTO_UPDATE=true
 if [ -e /opt/homebrew ]; then 
     export PATH="/opt/homebrew/bin:opt/openjdk@11/bin:$PATH"
+    export PATH="$(pyenv root)/shims:$PATH"
     source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     alias brew86="arch -x86_64 /usr/local/bin/brew"
     alias pyenv86="arch -x86_64 pyenv"
