@@ -8,7 +8,7 @@ fi # added by Nix installer
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-export PATH=$(echo ~/scripts):$(echo ~/.turso):$PATH
+export PATH=$(echo ~/scripts):$(echo ~/.turso):$(echo ~/go/bin):$PATH
 
 
 # Set name of the theme to load --- if set to "random", it will
