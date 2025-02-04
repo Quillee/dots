@@ -2,7 +2,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find $FZF_LOOKUP_DIRS -mindepth 1 -maxdepth 2 -type d | fzf)
+    selected=$(find $FZF_LOOKUP_DIRS -mindepth 1 -maxdepth 3 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
