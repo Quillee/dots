@@ -98,7 +98,7 @@ vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
 local status, err = pcall(
     function()
         if (vim.fn.has('gui_running') == 1) then
-            vim.cmd [[colorscheme lunaperche]]
+            vim.cmd [[colorscheme rose-pine]]
         else
             vim.cmd [[colorscheme highlite-papercolor]]
         end

@@ -30,7 +30,7 @@ return {
         vim.keymap.set("n", "<leader>lr", builtin.lsp_references, {})
 
         -- diagnostics
-        vim.keymap.set("n", "<leader>di", builtin.diagnostics, {})
+        vim.keymap.set("n", "<leader>ld", builtin.diagnostics, {})
 
         -- git
         vim.keymap.set("n", "<leader>gc", builtin.git_bcommits, {})
