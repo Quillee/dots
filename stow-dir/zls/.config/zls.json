@@ -1,5 +1,6 @@
 {
     "enable_build_on_save": true,
+    "semantic_tokens": "partial",
     "build_on_save_step": "check",
     "warn_style": true
 }

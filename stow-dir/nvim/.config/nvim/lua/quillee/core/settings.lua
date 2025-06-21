@@ -100,7 +100,7 @@ local status, err = pcall(
         if (vim.fn.has('gui_running') == 1) then
             vim.cmd [[colorscheme rose-pine]]
         else
-            vim.cmd [[colorscheme highlite-papercolor]]
+            vim.cmd [[colorscheme catppuccin-macchiato]]
         end
     end
 )
