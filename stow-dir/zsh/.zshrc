@@ -193,6 +193,9 @@ alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset
 alias gstatus="git status"
 alias lz="eza --hyperlink --group-directories-first --git -l -h -L=3 -m -Z --icons=always -b"
 alias lza="eza -T --git-ignore --hyperlink --group-directories-first -m --git -l -h -L=2 --icons=always -b"
+alias node_mod_list="find . -name 'node_modules' -type d -prune | xargs du -chs"
+alias node_mod_rm="find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +"
+
 
 bindkey -s ^f "tmxs.sh\n"
 
