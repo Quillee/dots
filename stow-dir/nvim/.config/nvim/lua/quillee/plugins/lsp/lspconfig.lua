@@ -63,6 +63,15 @@ return {
 		-- pyright
 		lspconfig.pyright.setup({
 			capabilities = capabilities,
+			settings = {
+				pyright = { autoImportCompletion = true },
+				python = {
+					analysis = {
+						autoSearchPaths = true,
+						useLibraryCodeForTypes = true,
+					},
+				},
+			},
 		})
 		-- ts_ls
 		lspconfig.ts_ls.setup({
