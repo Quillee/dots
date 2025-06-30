@@ -182,10 +182,12 @@ fi
 export GIT_EDITOR="nvim"
 export GIT_PAGER="bat"
 
+# navigation aliases
 alias ...="cd ../"
 alias ....="cd ../../"
 alias .....="cd ../../../"
 alias ......="cd ../../../../"
+# git aliases
 alias commit="git commit -m"
 alias commita="git commit -am"
 alias log_graph="git log --decorate --oneline --graph --all"
@@ -195,10 +197,12 @@ alias gs="git status"
 alias gst="git stash push -m"
 alias gm="git merge"
 alias gc="git commit -m"
-alias po="poetry"
-alias pr="poetry run python"
+# ls aliases
 alias lz="eza --hyperlink --group-directories-first --git -l -h -L=3 -m -Z --icons=always -b"
 alias lza="eza -T --git-ignore --hyperlink --group-directories-first -m --git -l -h -L=2 --icons=always -b"
+# python aliases
+alias vpy="poetry"
+alias vpyr="poetry run"
 
 bindkey -s ^f "tmxs.sh\n"
 
