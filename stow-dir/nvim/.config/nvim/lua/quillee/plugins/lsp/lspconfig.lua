@@ -158,6 +158,7 @@ return {
 		lspconfig.tailwindcss.setup({
 			capabilities = capabilities,
 			filetypes = { "templ", "html", "typescriptreact" },
+      classFunctions = { "cva", "cx" },
 		})
 		-- templ
 		require("lspconfig.configs").htmx = {
