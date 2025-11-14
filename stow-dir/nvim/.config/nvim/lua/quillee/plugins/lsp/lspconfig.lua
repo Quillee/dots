@@ -60,18 +60,13 @@ return {
 		})
 
 		-- Managing language servers individually
-		-- pyright
-		lspconfig.pyright.setup({
+		-- jedi-language-server
+		lspconfig.jedi_language_server.setup({
 			capabilities = capabilities,
-			settings = {
-				pyright = { autoImportCompletion = true },
-				python = {
-					analysis = {
-						autoSearchPaths = true,
-						useLibraryCodeForTypes = true,
-					},
-				},
-			},
+		})
+		-- ruff-lsp for Python linting
+		lspconfig.ruff_lsp.setup({
+			capabilities = capabilities,
 		})
 		-- ts_ls
 		lspconfig.ts_ls.setup({

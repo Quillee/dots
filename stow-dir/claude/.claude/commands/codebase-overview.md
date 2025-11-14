@@ -5,6 +5,8 @@ description: Generate comprehensive analysis and documentation of entire codebas
 
 # Comprehensive Codebase Analysis
 
+You are allowed to use bash
+
 ## Project Discovery Phase
 
 ### Directory Structure

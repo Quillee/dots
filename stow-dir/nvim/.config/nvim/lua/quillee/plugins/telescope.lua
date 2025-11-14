@@ -5,6 +5,7 @@ return {
 		"nvim-lua/plenary.nvim",
 		"kdheepak/lazygit.nvim",
 		"nvim-tree/nvim-web-devicons",
+        "debugloop/telescope-undo.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	},
 
@@ -14,6 +15,7 @@ return {
         local builtin = require "telescope.builtin"
 
         vim.keymap.set("n", "<leader>lf", builtin.find_files, {})
+        -- @todo: remove cause this is STOOPID
         vim.keymap.set("n", "<C-p>", builtin.git_files, {})
         vim.keymap.set("n", "<leader>ls",
             function()
@@ -24,13 +26,31 @@ return {
         vim.keymap.set("n", "<leader>lcb", builtin.current_buffer_fuzzy_find, {})
         vim.keymap.set("n", "<leader>lcl", builtin.jumplist, {})
         vim.keymap.set("n", "<leader>lr", builtin.registers, {})
+        require("telescope").load_extension("undo")
+        vim.keymap.set("n", "<leader>lu", "<cmd>Telescope undo<cr>")
+        
+        -- history mappings
+        vim.keymap.set("n", "<leader>lh", builtin.search_history, {})
+        vim.keymap.set("n", "<leader>lch", builtin.command_history, {})
+        
+        -- frequently used
+        vim.keymap.set("n", "<leader>lo", builtin.oldfiles, {})
+        vim.keymap.set("n", "<leader>lp", builtin.resume, {})
+        vim.keymap.set("n", "<leader>lm", builtin.marks, {})
+        vim.keymap.set("n", "<leader>lk", builtin.keymaps, {})
+        vim.keymap.set("n", "<leader>lH", builtin.help_tags, {})
+        vim.keymap.set("n", "<leader>lc", builtin.colorscheme, {})
 
         -- lsp mappings
         vim.keymap.set("n", "<leader>ld", builtin.lsp_definitions, {})
-        vim.keymap.set("n", "<leader>lr", builtin.lsp_references, {})
+        vim.keymap.set("n", "<leader>li", builtin.lsp_implementations, {})
+        vim.keymap.set("n", "<leader>lt", builtin.lsp_type_definitions, {})
+        vim.keymap.set("n", "<leader>lR", builtin.lsp_references, {})
+        vim.keymap.set("n", "<leader>lw", builtin.lsp_workspace_symbols, {})
+        vim.keymap.set("n", "<leader>lds", builtin.lsp_document_symbols, {})
 
         -- diagnostics
-        vim.keymap.set("n", "<leader>ld", builtin.diagnostics, {})
+        vim.keymap.set("n", "<leader>lD", builtin.diagnostics, {})
 
         -- git
         vim.keymap.set("n", "<leader>gc", builtin.git_bcommits, {})
