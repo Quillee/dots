@@ -1,12 +1,11 @@
 return {
 	"neovim/nvim-lspconfig",
-	event = { "BufNewFile" },
+	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
 		"Issafalcon/lsp-overloads.nvim",
 	},
 	config = function()
-		local lspconfig = require("lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
@@ -61,35 +60,37 @@ return {
 
 		-- Managing language servers individually
 		-- jedi-language-server
-		lspconfig.jedi_language_server.setup({
+		vim.lsp.config("jedi_language_server", {
 			capabilities = capabilities,
 		})
-		-- ruff-lsp for Python linting
-		lspconfig.ruff_lsp.setup({
+		-- ruff for Python linting
+		vim.lsp.config("ruff", {
 			capabilities = capabilities,
 		})
 		-- ts_ls
-		lspconfig.ts_ls.setup({
+		vim.lsp.config("ts_ls", {
 			capabilities = capabilities,
 		})
 		-- rust_analyzer
-		lspconfig.rust_analyzer.setup({
+		vim.lsp.config("rust_analyzer", {
 			capabilities = capabilities,
-			-- Server-specific settings. See `:help lspconfig-setup`
 			settings = {
 				["rust-analyzer"] = {},
 			},
 		})
-		lspconfig.ocamllsp.setup({
+		vim.lsp.config("ocamllsp", {
 			capabilities = capabilities,
 		})
 
 		-- html
-		lspconfig.html.setup({
+		vim.lsp.config("html", {
 			capabilities = capabilities,
 		})
+        vim.lsp.config("GitHubCopilot", {
+            capabilities = capabilities,
+        })
 		-- configure emmet language server
-		lspconfig.emmet_ls.setup({
+		vim.lsp.config("emmet_ls", {
 			capabilities = capabilities,
 			filetypes = {
 				"html",
@@ -103,38 +104,51 @@ return {
 				"templ",
 			},
 		})
-		-- configure emmet language server
-		lspconfig.eslint.setup({
+		-- configure eslint language server
+		vim.lsp.config("eslint", {
 			capabilities = capabilities,
 			filetypes = { "typescriptreact", "javascriptreact", "svelte" },
 		})
 
 		-- Lua LS
-		lspconfig.lua_ls.setup({
+		vim.lsp.config("lua_ls", {
 			capabilities = capabilities,
 			settings = {
 				Lua = {
+					runtime = {
+						version = "LuaJIT",
+					},
 					diagnostics = {
 						globals = { "vim" },
+					},
+					workspace = {
+						library = {
+							vim.fn.expand("$VIMRUNTIME/lua"),
+							vim.fn.stdpath("config") .. "/lua",
+						},
+						checkThirdParty = false,
+					},
+					telemetry = {
+						enable = false,
 					},
 				},
 			},
 		})
 
-		lspconfig.zls.setup({})
+		vim.lsp.config("zls", {})
 
 		-- CSS LS
-		lspconfig.cssls.setup({
+		vim.lsp.config("cssls", {
 			capabilities = capabilities,
 		})
-		lspconfig.gopls.setup({
+		vim.lsp.config("gopls", {
 			capabilities = capabilities,
 			filetypes = { "go" },
 		})
-		lspconfig.clangd.setup({
+		vim.lsp.config("clangd", {
 			capabilities = capabilities,
 			filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
-			root_dir = lspconfig.util.root_pattern(
+			root_pattern = {
 				"Makefile",
 				".clangd",
 				".clang-tidy",
@@ -143,30 +157,35 @@ return {
 				"compile_flags.txt",
 				"configure.ac",
 				".git"
-			),
+			},
 			single_file_support = true,
 		})
 
-		lspconfig.templ.setup({
+		vim.lsp.config("templ", {
 			capabilities = capabilities,
 			filetypes = { "templ" },
 		})
 
 		-- Tailwind
-		-- Support for tailwind auto completion
-		-- install the tailwind server : "sudo npm install -g @tailwindcss/language-server"
-		lspconfig.tailwindcss.setup({
+		vim.lsp.config("tailwindcss", {
 			capabilities = capabilities,
 			filetypes = { "templ", "html", "typescriptreact" },
-      classFunctions = { "cva", "cx" },
-		})
-		-- templ
-		require("lspconfig.configs").htmx = {
-			default_config = {
-				cmd = { "htmx-lsp" },
-				filetypes = { "templ", "html", "htmx" },
-				settings = {},
+			settings = {
+				tailwindCSS = {
+					experimental = {
+						classRegex = {
+							{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+							{ "cx\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" }
+						}
+					}
+				}
 			},
-		}
+		})
+		-- htmx custom server
+		vim.lsp.config("htmx", {
+			cmd = { "htmx-lsp" },
+			filetypes = { "templ", "html", "htmx" },
+			capabilities = capabilities,
+		})
 	end,
 }
