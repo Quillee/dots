@@ -65,7 +65,7 @@ return {
 			capabilities = capabilities,
 		})
 		-- ruff-lsp for Python linting
-		lspconfig.ruff_lsp.setup({
+		lspconfig.ruff.setup({
 			capabilities = capabilities,
 		})
 		-- ts_ls
@@ -121,7 +121,12 @@ return {
 			},
 		})
 
-		lspconfig.zls.setup({})
+		lspconfig.zls.setup({
+            capabilities=capabilities,
+            settings={
+                build_on_save=true,
+            }
+        })
 
 		-- CSS LS
 		lspconfig.cssls.setup({

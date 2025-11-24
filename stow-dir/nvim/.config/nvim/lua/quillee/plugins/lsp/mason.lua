@@ -44,7 +44,7 @@ return {
 				{ "emmet-ls" },
 				{ "css-lsp" },
 				{ "jedi-language-server" },
-				{ "ruff-lsp" },
+				{ "ruff" },
 				{ "black" },
 				{ "autopep8" },
 				{ "json-lsp" },
