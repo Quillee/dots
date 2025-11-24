@@ -4,7 +4,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
-
+	build = ":MasonUpdate",
 	config = function()
 		local mason = require("mason")
 		local mason_lspconfig = require("mason-lspconfig")
@@ -25,7 +25,7 @@ return {
 				"lua_ls",
 				"cssls",
 				"marksman",
-                "zls"
+				"zls"
 			},
 			-- auto installation
 			automatic_installation = true,
