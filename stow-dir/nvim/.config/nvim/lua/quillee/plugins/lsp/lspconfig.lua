@@ -64,7 +64,7 @@ return {
 			capabilities = capabilities,
 		})
 		-- ruff-lsp for Python linting
-		lspconfig.ruff.setup({
+		vim.lsp.config('ruff', {
 			capabilities = capabilities,
 		})
 		-- ts_ls
@@ -86,9 +86,9 @@ return {
 		vim.lsp.config("html", {
 			capabilities = capabilities,
 		})
-        vim.lsp.config("GitHubCopilot", {
-            capabilities = capabilities,
-        })
+        -- vim.lsp.config("GitHubCopilot", {
+        --     capabilities = capabilities,
+        -- })
 		-- configure emmet language server
 		vim.lsp.config("emmet_ls", {
 			capabilities = capabilities,
