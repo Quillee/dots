@@ -25,7 +25,8 @@ return {
 				"lua_ls",
 				"cssls",
 				"marksman",
-				"zls"
+				"zls",
+				"ts_ls"
 			},
 			-- auto installation
 			automatic_installation = true,
@@ -43,7 +44,7 @@ return {
 				{ "html-lsp" },
 				{ "emmet-ls" },
 				{ "css-lsp" },
-				{ "jedi-language-server" },
+				{ "pyrefly" },
 				{ "ruff" },
 				{ "black" },
 				{ "autopep8" },

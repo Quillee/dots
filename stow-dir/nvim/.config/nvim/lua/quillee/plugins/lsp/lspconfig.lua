@@ -58,10 +58,15 @@ return {
 			end,
 		})
 
-		-- Managing language servers individually
+		-- Managing language servers individually. Fuck jedi :)
 		-- jedi-language-server
-		vim.lsp.config("jedi_language_server", {
+		-- vim.lsp.config("jedi_language_server", {
+		-- 	capabilities = capabilities,
+		-- })
+        -- pyrefly
+		vim.lsp.config('pyrefly', {
 			capabilities = capabilities,
+            cmd = { 'uvx', 'pyrefly', 'lsp' },
 		})
 		-- ruff-lsp for Python linting
 		vim.lsp.config('ruff', {
@@ -70,6 +75,64 @@ return {
 		-- ts_ls
 		vim.lsp.config("ts_ls", {
 			capabilities = capabilities,
+			filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+			settings = {
+				typescript = {
+					inlayHints = {
+						includeInlayParameterNameHints = "all",
+						includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+						includeInlayFunctionParameterTypeHints = true,
+						includeInlayVariableTypeHints = true,
+						includeInlayPropertyDeclarationTypeHints = true,
+						includeInlayFunctionLikeReturnTypeHints = true,
+						includeInlayEnumMemberValueHints = true,
+					},
+					format = {
+						indentSize = 2,
+						tabSize = 2,
+						convertTabsToSpaces = true,
+					},
+					suggest = {
+						completeFunctionCalls = true,
+						includeCompletionsWithSnippetText = true,
+						includeAutomaticOptionalChainCompletions = true,
+					},
+				},
+				javascript = {
+					inlayHints = {
+						includeInlayParameterNameHints = "all",
+						includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+						includeInlayFunctionParameterTypeHints = true,
+						includeInlayVariableTypeHints = true,
+						includeInlayPropertyDeclarationTypeHints = true,
+						includeInlayFunctionLikeReturnTypeHints = true,
+						includeInlayEnumMemberValueHints = true,
+					},
+					format = {
+						indentSize = 2,
+						tabSize = 2,
+						convertTabsToSpaces = true,
+					},
+					suggest = {
+						completeFunctionCalls = true,
+						includeCompletionsWithSnippetText = true,
+						includeAutomaticOptionalChainCompletions = true,
+					},
+				},
+			},
+			init_options = {
+				preferences = {
+					includePackageJsonAutoImports = "auto",
+					importModuleSpecifierPreference = "shortest",
+					includeCompletionsForModuleExports = true,
+					includeCompletionsWithClassMemberSnippets = true,
+					includeCompletionsWithObjectLiteralMethodSnippets = true,
+					generateReturnInDocTemplate = true,
+					renameShorthandProperties = true,
+					includeCompletionsWithSnippetText = true,
+				},
+			},
+			single_file_support = true,
 		})
 		-- rust_analyzer
 		vim.lsp.config("rust_analyzer", {
