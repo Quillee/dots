@@ -1,0 +1,140 @@
+{
+  // Dep-free bar: needs only waybar + Hyprland. Click handlers use kitty,
+  // htop, pavucontrol, pamixer. No omarchy scripts, no $OMARCHY_PATH.
+  "reload_style_on_change": true,
+  "layer": "top",
+  "position": "top",
+  "height": 36,
+  "spacing": 4,
+
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
+  "modules-center": ["clock"],
+  "modules-right": ["group/stats", "bluetooth", "network", "pulseaudio", "group/tray-expander"],
+
+  // ── Stats: cpu/temp/memory/disk share one pill ──
+  "group/stats": {
+    "orientation": "horizontal",
+    "modules": ["cpu", "temperature", "memory", "disk"]
+  },
+
+  // ── Tray expander: collapsible tray drawer (pure waybar, no deps) ──
+  // Click the chevron to slide the tray icons in/out.
+  "group/tray-expander": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 400,
+      "children-class": "tray-group-item",
+      "transition-left-to-right": false
+    },
+    "modules": ["custom/expand-icon", "tray"]
+  },
+
+  "custom/expand-icon": {
+    "format": "",
+    "tooltip": false
+  },
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10"
+    },
+    "on-click": "activate",
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
+    }
+  },
+
+  "hyprland/window": {
+    "max-length": 50,
+    "separate-outputs": true
+  },
+
+  "cpu": {
+    "format": "  {usage}%",
+    "interval": 2,
+    "on-click": "kitty -e btop"
+  },
+
+  "memory": {
+    "format": "󰍛  {}%",
+    "interval": 2,
+    "on-click": "kitty -e btop"
+  },
+
+  "disk": {
+    "format": "󰋊  {percentage_used}%",
+    "interval": 30,
+    "path": "/"
+  },
+
+  "temperature": {
+    "format": "󰔏  {temperatureC}°C",
+    "format-critical": "󰜪  {temperatureC}°C",
+    "critical-threshold": 80,
+    "interval": 10
+  },
+
+  // Built-in BlueZ module (D-Bus). Click opens the KDE add-device wizard.
+  "bluetooth": {
+    "format": "",
+    "format-off": "󰂲",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱",
+    "format-no-controller": "󰂲",
+    "tooltip-format": "{controller_alias}\nDevices connected: {num_connections}",
+    "tooltip-format-connected": "{controller_alias}\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "on-click": "bluedevil-wizard"
+  },
+
+  "network": {
+    "format-wifi": "{signalStrength}%",
+    "format-ethernet": "󰈁",
+    "format-disconnected": "󰈂",
+    "tooltip-format": "{essid} via {gwaddr}  {ifname}",
+    "interval": 3
+  },
+
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "headset": "",
+      "default": ["", "", ""]
+    },
+    "tooltip-format": "Playing at {volume}%",
+    "scroll-step": 5,
+    "on-click": "pavucontrol",
+    "on-click-right": "pamixer -t",
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5"
+  },
+
+  // Click the clock to toggle between time and full date (format-alt).
+  "clock": {
+    "format": "  {:%a %d %b %H:%M}",
+    "format-alt": "  {:%A %d %B W%V %Y}",
+    "interval": 60,
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+
+  "tray": {
+    "icon-size": 14,
+    "spacing": 8
+  }
+}

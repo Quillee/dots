@@ -1,0 +1,138 @@
+/* Colors from i3 theme:
+   dark_porple #26233A  porple #484456  lite_porple #7C7B88
+   black #180605  rose #EBBCBA  cream #FBEFE3  lilac #E0DEF4
+   magenta #B48EAD  grey #5F676A  lite_red #EB6F92  teal #31748F
+*/
+
+* {
+    background: transparent;
+    color: #EBBCBA;
+    font-family: "FiraCode Nerd Font SemiBold", monospace;
+    font-size: 12px;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+}
+
+/* ── Floating pill containers ── */
+#workspaces,
+#window,
+#stats,
+#network,
+#pulseaudio,
+#clock,
+#tray {
+    background: #26233A;
+    border-radius: 20px;
+    margin: 0 2px;
+}
+
+/* ── Workspaces ── */
+#workspaces {
+    padding: 0 4px;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    color: #484456;
+    background: transparent;
+    border-radius: 16px;
+    transition: all 0.15s ease;
+}
+
+#workspaces button:hover {
+    background: #484456;
+    color: #EBBCBA;
+}
+
+#workspaces button.active {
+    color: #EBBCBA;
+    background: #484456;
+}
+
+#workspaces button.urgent {
+    color: #E0DEF4;
+    background: #EB6F92;
+    border-radius: 16px;
+}
+
+/* ── Window title ── */
+#window {
+    color: #E0DEF4;
+    font-style: italic;
+    padding: 0 16px;
+}
+
+/* ── Stats group — modules share the pill background ── */
+#stats {
+    padding: 0 4px;
+}
+
+#cpu {
+    color: #31748F;
+    padding: 0 10px;
+}
+
+#temperature {
+    color: #FBEFE3;
+    padding: 0 10px;
+}
+
+#temperature.critical {
+    color: #EB6F92;
+}
+
+#memory {
+    color: #B48EAD;
+    padding: 0 10px;
+}
+
+#disk {
+    color: #E0DEF4;
+    padding: 0 10px;
+}
+
+/* ── Network ── */
+#network {
+    color: #31748F;
+    padding: 0 16px;
+}
+
+#network.disconnected {
+    color: #5F676A;
+}
+
+/* ── Audio ── */
+#pulseaudio {
+    color: #EBBCBA;
+    padding: 0 16px;
+}
+
+#pulseaudio.muted {
+    color: #5F676A;
+}
+
+/* ── Clock ── */
+#clock {
+    color: #EBBCBA;
+    padding: 0 16px;
+}
+
+/* ── Tray ── */
+#tray {
+    padding: 0 12px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background: #EB6F92;
+    border-radius: 10px;
+}
