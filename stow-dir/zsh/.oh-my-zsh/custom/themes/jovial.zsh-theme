@@ -1,0 +1,1 @@
+../../../.config/zsh/themes-standalone/jovial/jovial.zsh-theme
