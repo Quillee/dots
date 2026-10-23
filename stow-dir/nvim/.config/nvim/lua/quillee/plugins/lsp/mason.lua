@@ -22,19 +22,23 @@ return {
 		-- mason-lspconfig
 		mason_lspconfig.setup({
 			ensure_installed = {
+				"angularls",
 				"lua_ls",
 				"cssls",
 				"marksman",
 				"zls",
 				"ts_ls"
 			},
-			-- auto installation
-			automatic_installation = true,
+			automatic_enable = {
+				exclude = { "roslyn_ls" },
+			},
 		})
 
 		-- mason-tool-installer
 		mason_tool_installer.setup({
 			ensure_installed = {
+				{ "roslyn-language-server" },
+				{ "netcoredbg" },
 				-- you can turn off/on auto_update per tool
 				{ "bash-language-server" },
 				{ "lua-language-server" },

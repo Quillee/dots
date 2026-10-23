@@ -8,6 +8,22 @@ return {
 	config = function()
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local capabilities = cmp_nvim_lsp.default_capabilities()
+		local dotnet_path = vim.fn.resolve(vim.fn.exepath("dotnet"))
+		local dotnet_dir = vim.fs.dirname(dotnet_path)
+		local homebrew_dotnet_root = vim.fs.joinpath(vim.fs.dirname(dotnet_dir), "libexec")
+		local dotnet_root = vim.env.DOTNET_ROOT
+		if not dotnet_root or dotnet_root == "" then
+			if vim.uv.fs_stat(vim.fs.joinpath(dotnet_dir, "shared")) then
+				dotnet_root = dotnet_dir
+			elseif vim.uv.fs_stat(vim.fs.joinpath(homebrew_dotnet_root, "shared")) then
+				dotnet_root = homebrew_dotnet_root
+			end
+		end
+		local roslyn_dll = vim.fn.glob(
+			vim.fn.stdpath("data") .. "/mason/packages/roslyn-language-server/.store/**/Microsoft.CodeAnalysis.LanguageServer.dll",
+			false,
+			true
+		)[1]
 
 		local signs = { Error = " 󰞏", Warn = "󰒡 ", Hint = "󰅏 ", Info = " " }
 		for type, icon in pairs(signs) do
@@ -133,6 +149,47 @@ return {
 				},
 			},
 			single_file_support = true,
+		})
+		vim.lsp.config("angularls", {
+			capabilities = capabilities,
+		})
+		vim.lsp.config("roslyn", {
+			capabilities = capabilities,
+			cmd = roslyn_dll and { dotnet_path, roslyn_dll, "--stdio" } or nil,
+			cmd_env = {
+				DOTNET_ROOT = dotnet_root,
+			},
+			settings = {
+				["csharp|background_analysis"] = {
+					dotnet_analyzer_diagnostics_scope = "fullSolution",
+					dotnet_compiler_diagnostics_scope = "fullSolution",
+				},
+				["csharp|code_lens"] = {
+					dotnet_enable_references_code_lens = true,
+					dotnet_enable_tests_code_lens = true,
+				},
+				["csharp|completion"] = {
+					dotnet_show_completion_items_from_unimported_namespaces = true,
+					dotnet_show_name_completion_suggestions = true,
+				},
+				["csharp|formatting"] = {
+					dotnet_organize_imports_on_format = true,
+				},
+				["csharp|inlay_hints"] = {
+					csharp_enable_inlay_hints_for_implicit_object_creation = true,
+					csharp_enable_inlay_hints_for_implicit_variable_types = true,
+					csharp_enable_inlay_hints_for_lambda_parameter_types = true,
+					csharp_enable_inlay_hints_for_types = true,
+					dotnet_enable_inlay_hints_for_indexer_parameters = true,
+					dotnet_enable_inlay_hints_for_literal_parameters = true,
+					dotnet_enable_inlay_hints_for_object_creation_parameters = true,
+					dotnet_enable_inlay_hints_for_other_parameters = true,
+					dotnet_enable_inlay_hints_for_parameters = true,
+				},
+				["csharp|symbol_search"] = {
+					dotnet_search_reference_assemblies = true,
+				},
+			},
 		})
 		-- rust_analyzer
 		vim.lsp.config("rust_analyzer", {

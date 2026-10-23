@@ -5,6 +5,6 @@ vim.cmd 'set t_Co=256'
 vim.cmd 'set termguicolors'
 
 require("quillee.core.keymaps")
+require("quillee.core.dotnet")
 require("quillee.core.lazy")
 require("quillee.core.settings")
-

@@ -1,7 +1,7 @@
 return {
 	"benlubas/molten-nvim",
 	dependencies = {
-		"3rd/image.nvim",
+		-- "3rd/image.nvim",
 		"willothy/wezterm.nvim",
 	},
     lazy = true,
