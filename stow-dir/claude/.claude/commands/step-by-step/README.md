@@ -89,6 +89,7 @@ Every example below uses the default values, so they all behave the same. They s
 | `hints` | `/step-by-step hints=graduated I want to build a rate limiter` |
 | `stop` | `/step-by-step stop=scaffold I want to build a rate limiter` |
 | `level` | `/step-by-step level=familiar I want to build a rate limiter` |
+| `prd-dir` | `/step-by-step prd-dir=repo I want to build a rate limiter` |
 
 **Resume and list.** These are actions, so they have no default value. `list` defaults to the current repo.
 
@@ -120,21 +121,30 @@ A bare `resume` with several unfinished tasks in the repo shows the list and ask
 
 ## Where files live
 
-`prd/` sits **exactly one level above the repo root**, shared by sibling repos, with one subfolder per repo and one per task:
+`prd/` can live in either of two places, with one subfolder per repo and one per task:
 
 ```
-parent-dir/
-├── prd/                          <- Obsidian vault root
+my-repo/                         <- the repo
+├── prd/                          <- Obsidian vault root (default: inside the repo)
 │   └── my-repo/
 │       └── rate-limiter/
 │           ├── prd-rate-limiter.md
 │           ├── 01-project-wiring.md
 │           ├── 02.01-interfaces.md
 │           └── 03.02-token-store.md
+└── ...
+```
+
+```
+parent-dir/
+├── prd/                          <- Obsidian vault root (prd-dir=parent), shared by sibling repos
+│   └── my-repo/
+│       └── rate-limiter/
+│           └── ...
 └── my-repo/                      <- the repo
 ```
 
-Claude finds the repo root (`git rev-parse --show-toplevel`), takes its parent directory, and creates `prd/` there if it doesn't exist. Because `prd/` is outside the repo, the repo's git does not track it. Back it up or version it separately if you want history. Claude mentions this once, the first time it creates the directory.
+Claude finds the repo root (`git rev-parse --show-toplevel`) and searches both `repo_root/prd/` and `<parent of repo_root>/prd/`. If one already exists, Claude uses it. If neither exists yet, Claude creates one at the location named by the `prd-dir` option (`repo` by default, or `parent`). A `prd/` created one level above the repo sits outside the repo, so the repo's git does not track it — back it up or version it separately if you want history. Claude mentions this once, the first time it creates a `prd/` in that location.
 
 ## File naming
 

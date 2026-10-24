@@ -1,6 +1,6 @@
 ---
 name: step-by-step
-description: Copilot workflow where Claude does the scaffolding and the user stays in the loop by completing the important parts themselves. Interviews the user grill-me style, writes an Obsidian-compatible PRD (task table plus dependency tree) to prd/REPO/TASK-NAME/ one level above the repo, splits tasks between Claude and the user, writes walkthroughs with graduated hints that carry over across Claude instances, then works test-first in stages: for each task the user owns, Claude builds only what that task needs, writes failing tests that define done, and stops so the user can implement it, then reviews against the tests and moves to the next stage. Use whenever the user types /step-by-step, says "keep me in the loop", "copilot mode", "you scaffold, I'll build", "walk me through it", "I want to stay hands-on", "resume my task", or "where did we leave off", or hands over a sizeable build and says they want to follow along or understand it, even if they never name the skill. Options - grill, own, hints, stop, level, list, resume. Not for quick one-off requests where the user just wants it done.
+description: Copilot workflow where Claude does the scaffolding and the user stays in the loop by completing the important parts themselves. Interviews the user grill-me style, writes an Obsidian-compatible PRD (task table plus dependency tree) to prd/REPO/TASK-NAME/, inside the repo by default or one level above it, splits tasks between Claude and the user, writes walkthroughs with graduated hints that carry over across Claude instances, then works test-first in stages: for each task the user owns, Claude builds only what that task needs, writes failing tests that define done, and stops so the user can implement it, then reviews against the tests and moves to the next stage. Use whenever the user types /step-by-step, says "keep me in the loop", "copilot mode", "you scaffold, I'll build", "walk me through it", "I want to stay hands-on", "resume my task", or "where did we leave off", or hands over a sizeable build and says they want to follow along or understand it, even if they never name the skill. Options - grill, own, hints, stop, level, prd-dir, list, resume. Not for quick one-off requests where the user just wants it done.
 ---
 
 # Step-by-Step
@@ -21,10 +21,10 @@ Keep these goals in mind when a situation isn't covered here. If a choice would 
 
 - `repo_root`: `git rev-parse --show-toplevel` (fall back to the nearest ancestor containing `.git`, then the current directory).
 - `repo`: the basename of `repo_root`.
-- `prd_root`: **the directory named `prd` exactly one level above `repo_root`**, i.e. `<parent of repo_root>/prd/`. Create it if missing. The first time you create it, tell the user once: it sits outside the repo so the repo's git does not track it, and `prd/` is meant to be opened as an Obsidian vault.
+- `prd_root`: the directory named `prd`, in either of two places: **inside `repo_root`** (`repo_root/prd/`) or **one level above it** (`<parent of repo_root>/prd/`). Search both. If one already exists, use it. If both exist, use the one named by the `prd-dir` option (default `repo`). If neither exists, create it at the location named by `prd-dir`. When you create `prd/` one level above the repo, tell the user once: it sits outside the repo so the repo's git does not track it (back it up or version it separately), and `prd/` is meant to be opened as an Obsidian vault either way.
 - `task_dir`: `prd_root/<repo>/<task-name>/`. Create it for a new task. `<task-name>` is a short kebab-case slug (2 to 4 words) generated from the user's goal. If it already exists, ask whether to resume it or pick a new name.
 
-To resolve these paths deterministically, run `scripts/list_tasks.py --paths`; it also reports whether `prd_root` exists yet, so you know whether to give the one-time note about it.
+To resolve these paths deterministically, run `scripts/list_tasks.py --paths` (pass `--prd-dir parent` to prefer the directory one level above the repo); it also reports whether `prd_root` exists yet, so you know whether to give the one-time note about it.
 
 Files inside `task_dir`:
 
@@ -61,6 +61,7 @@ Parse options from the invocation. Accept both `key=value` and plain words ("qui
 | `hints` | `none` / `graduated` / `full` | `graduated` | Hints in walkthroughs |
 | `stop` | `prd` / `plan` / `scaffold` | `scaffold` | Where Claude pauses |
 | `level` | `new` / `familiar` / `expert` | `familiar` | Step granularity and explanation depth |
+| `prd-dir` | `repo` / `parent` | `repo` | Where to create `prd/` when it exists in neither place: inside the repo root, or one level above it. Both locations are always searched first. |
 | `list` | `list` or `list all` | n/a | Show tasks for this repo, or for every repo |
 | `resume` | optional task name | n/a | Pick up an existing task |
 

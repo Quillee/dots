@@ -19,7 +19,7 @@ Five deterministic helpers in `scripts/` handle the parts of this skill that hav
 - **Python 3.12, standard library only.** Nothing to install. The code avoids newer-only syntax, so it also runs on slightly older interpreters. Call it with `python3` (or `python` on Windows).
 - **Run from anywhere.** Call scripts by path: `python3 <skill-dir>/scripts/<name>.py`. Scripts that need the repo find it with `git rev-parse --show-toplevel` from the current directory, falling back to the nearest ancestor containing `.git`.
 - **Task argument.** Where a script takes `TASK`, pass either the task directory path or a bare task name (resolved under `prd/<repo>/`).
-- **Common flags** on every script that locates paths: `--repo-root PATH`, `--prd-root PATH`, `--repo NAME`. `--json` prints machine-readable output.
+- **Common flags** on every script that locates paths: `--repo-root PATH`, `--prd-root PATH`, `--repo NAME`, `--prd-dir {repo,parent}` (default `repo`). `prd_root` is searched in both `repo_root/prd/` and `<parent of repo_root>/prd/`; whichever exists wins, and `--prd-dir` only picks where a brand-new one is created. `--prd-root` bypasses this search entirely. `--json` prints machine-readable output.
 - **Exit codes.** `0` ok, `1` findings (problems or drift; for `list_tasks.py --resume`, none or ambiguous), `2` usage error or refusal.
 - **Never destructive by surprise.** `check_drift.py`, `validate_task.py`, and `list_tasks.py` only read. `new_task.py` never overwrites a walkthrough and overwrites a PRD only with `--force`. `rename_task_file.py` has `--dry-run`.
 
@@ -48,7 +48,7 @@ python3 list_tasks.py --resume [NAME]  decide which task to resume
 
 - Listing prints one line per task: name, PRD status, `n/m done`, and the next step (for example `03 Token store (you), step 2 of 5`, `claude pass pending: 04`, or `complete`).
 - The next user task is the first user-owned task that is unfinished, not blocked, and whose prerequisites are finished.
-- `--paths` shows `prd_root_exists`. If it is false, `prd/` has not been created yet; give the one-time note about it being outside the repo when you first create it.
+- `--paths` shows `prd_root_exists`. If it is false, `prd/` has not been created yet; give the one-time note about it being outside the repo when you first create it at the `parent` location.
 - `--resume` resolves to exactly one task (by name, by unique prefix or substring, or because only one unfinished task exists) and prints its path, next step, walkthrough, and "Resume here" text. Otherwise it prints the candidates and exits `1`: ask the user which one, or offer to start a new task.
 
 ## new_task.py

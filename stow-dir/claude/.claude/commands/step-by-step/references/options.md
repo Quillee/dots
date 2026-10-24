@@ -9,6 +9,7 @@ Every option has a default, so the bare command always works. Record the final s
 - hints
 - stop
 - level
+- prd-dir
 - list and resume
 
 ## Parsing
@@ -35,6 +36,8 @@ Natural-language phrasings to recognize:
 | "stop after the plan", "write the walkthroughs but don't scaffold" | `stop=plan` |
 | "I'm new to this", "explain the why" | `level=new` |
 | "I know this area well", "keep it terse" | `level=expert` |
+| "put the prd in the repo", "keep the prd tracked with the code" | `prd-dir=repo` |
+| "put the prd next to the repo", "prd outside the repo" | `prd-dir=parent` |
 | "list", "show my tasks" | `list` |
 | "list all", "tasks across repos" | `list all` |
 | "resume", "where did we leave off", "pick it back up" | `resume` |
@@ -94,6 +97,17 @@ Calibrates how fine-grained the steps are and how much explanation they carry.
 | `expert` | Coarse; one step may span several actions | Terse. State the goal and the contract, skip the rationale |
 
 `level` changes the walkthrough depth, not which tasks the user owns (that is `own`).
+
+## prd-dir
+
+Controls where `prd/` is **created** when it exists in neither candidate location. `prd_root` is always searched in both places first (`repo_root/prd/` and `<parent of repo_root>/prd/`); whichever one already exists wins, regardless of this setting. It only decides a brand-new vault's home.
+
+| Value | Behavior |
+|---|---|
+| `repo` (default) | Create `prd/` inside the repo root. Tracked by the repo's git like any other file. |
+| `parent` | Create `prd/` one level above the repo root, shared by sibling repos. Not tracked by the repo's git; mention this once, the first time it is created. |
+
+Once `task_dir` exists, this setting is fixed for that task: Claude does not move an existing `prd/` to match a later `prd-dir` value.
 
 ## list and resume
 

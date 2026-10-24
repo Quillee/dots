@@ -189,14 +189,33 @@ def find_repo_root(start: Path | None = None) -> Path:
 
 def add_path_args(parser) -> None:
     parser.add_argument("--repo-root", help="repository root (default: git toplevel of the current directory)")
-    parser.add_argument("--prd-root", help="override the prd directory (default: 'prd' one level above the repo root)")
+    parser.add_argument("--prd-root", help="override the prd directory (skips --prd-dir and the parent/repo search)")
     parser.add_argument("--repo", help="override the repo folder name under prd/ (default: repo root basename)")
+    parser.add_argument(
+        "--prd-dir", choices=["parent", "repo"], default="repo",
+        help="where to create 'prd/' if it exists in neither place: inside the repo root, "
+             "or one level above it (default: repo)",
+    )
 
 
 def resolve_paths(args) -> Paths:
     repo_root = Path(args.repo_root).resolve() if getattr(args, "repo_root", None) else find_repo_root()
-    prd_root = Path(args.prd_root).resolve() if getattr(args, "prd_root", None) else repo_root.parent / "prd"
     repo = getattr(args, "repo", None) or repo_root.name
+    if getattr(args, "prd_root", None):
+        prd_root = Path(args.prd_root).resolve()
+        return Paths(repo_root=repo_root, repo=repo, prd_root=prd_root)
+
+    in_repo = repo_root / "prd"
+    above_repo = repo_root.parent / "prd"
+    preferred, other = (in_repo, above_repo) if getattr(args, "prd_dir", "repo") == "repo" else (above_repo, in_repo)
+
+    if preferred.is_dir():
+        prd_root = preferred
+    elif other.is_dir():
+        prd_root = other
+    else:
+        prd_root = preferred
+
     return Paths(repo_root=repo_root, repo=repo, prd_root=prd_root)
 
 
