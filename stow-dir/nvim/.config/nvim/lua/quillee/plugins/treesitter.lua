@@ -1,5 +1,6 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+	branch = "master",
 
 	dependencies = {
 		"JoosepAlviste/nvim-ts-context-commentstring",
@@ -15,6 +16,7 @@ return {
 
 		treesitter.setup({
 			ensure_installed = {
+				"angular",
 				"c",
 				"lua",
 				"vim",
@@ -26,6 +28,8 @@ return {
 				"python",
 				"markdown",
 				"markdown_inline",
+				"make",
+				"xml",
                 "zig",
                 "mermaid",
                 "go",

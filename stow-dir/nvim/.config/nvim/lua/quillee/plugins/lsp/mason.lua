@@ -4,7 +4,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
-
+	build = ":MasonUpdate",
 	config = function()
 		local mason = require("mason")
 		local mason_lspconfig = require("mason-lspconfig")
@@ -22,13 +22,13 @@ return {
 		-- mason-lspconfig
 		mason_lspconfig.setup({
 			ensure_installed = {
+				"angularls",
 				"lua_ls",
 				"cssls",
 				"marksman",
-                "zls"
+				"zls",
+				"ts_ls"
 			},
-			-- auto installation
-			automatic_installation = true,
 		})
 
 		-- mason-tool-installer
@@ -43,7 +43,8 @@ return {
 				{ "html-lsp" },
 				{ "emmet-ls" },
 				{ "css-lsp" },
-				{ "pyright" },
+				{ "pyrefly" },
+				{ "ruff" },
 				{ "black" },
 				{ "autopep8" },
 				{ "json-lsp" },

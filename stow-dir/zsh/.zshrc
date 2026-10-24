@@ -9,6 +9,8 @@ fi # added by Nix installer
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export PATH=$(echo ~/scripts):$(echo ~/.turso):$(echo ~/go/bin):$PATH
+# and .local/bin
+export PATH="$HOME/.local/bin:$PATH"
 
 
 # Set name of the theme to load --- if set to "random", it will
@@ -79,7 +81,7 @@ ZSH_THEME="jovial"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  autojump
+  zoxide
   urltools
   bgnotify
   zsh-autosuggestions
@@ -168,34 +170,46 @@ alias switchdesktop=switchdesktop
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export HOMEBREW_NO_AUTO_UPDATE=true
 if [ -e /opt/homebrew ]; then 
     export PATH="/opt/homebrew/bin:opt/openjdk@11/bin:$PATH"
     export PATH="$(pyenv root)/shims:$PATH"
-    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     alias brew86="arch -x86_64 /usr/local/bin/brew"
     alias pyenv86="arch -x86_64 pyenv"
     alias py86="arch -x86_64 /usr/local/Cellar/python@3.10/3.10.4/bin/python3"
-    tmux source ~/.config/tmux/.tmux.conf
+    [ -n "$TMUX" ] && tmux source ~/.config/tmux/.tmux.conf
 fi
 
 export GIT_EDITOR="nvim"
 export GIT_PAGER="bat"
 
+# navigation aliases
 alias ...="cd ../"
 alias ....="cd ../../"
 alias .....="cd ../../../"
 alias ......="cd ../../../../"
+# git aliases
 alias commit="git commit -m"
 alias commita="git commit -am"
 alias log_graph="git log --decorate --oneline --graph --all"
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gstatus="git status"
+alias gs="git status"
+alias gst="git stash push -m"
+alias gm="git merge"
+alias gc="git commit -m"
+# ls aliases
 alias lz="eza --hyperlink --group-directories-first --git -l -h -L=3 -m -Z --icons=always -b"
 alias lza="eza -T --git-ignore --hyperlink --group-directories-first -m --git -l -h -L=2 --icons=always -b"
+# python aliases
+alias vpy="poetry"
+alias vpyr="poetry run"
+
 alias node_mod_list="find . -name 'node_modules' -type d -prune | xargs du -chs"
 alias node_mod_rm="find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +"
 
-
 bindkey -s ^f "tmxs.sh\n"
 
+export HOMEBREW_NO_AUTO_UPDATE=true
+
+# Claude Code aliases
+alias claudebr="CLAUDE_CODE_USE_BEDROCK=1 claude"
