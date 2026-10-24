@@ -18,7 +18,6 @@ return {
 			ensure_installed = {
 				"angular",
 				"c",
-				"c_sharp",
 				"lua",
 				"vim",
 				"vimdoc",
@@ -30,7 +29,6 @@ return {
 				"markdown",
 				"markdown_inline",
 				"make",
-				"razor",
 				"xml",
                 "zig",
                 "mermaid",
