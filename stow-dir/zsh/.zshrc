@@ -204,6 +204,9 @@ alias lza="eza -T --git-ignore --hyperlink --group-directories-first -m --git -l
 alias vpy="poetry"
 alias vpyr="poetry run"
 
+alias node_mod_list="find . -name 'node_modules' -type d -prune | xargs du -chs"
+alias node_mod_rm="find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +"
+
 bindkey -s ^f "tmxs.sh\n"
 
 export HOMEBREW_NO_AUTO_UPDATE=true
