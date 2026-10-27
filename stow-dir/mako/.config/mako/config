@@ -1,0 +1,22 @@
+default-timeout=1000
+
+background-color=#26233A
+text-color=#EBBCBA
+border-color=#484456
+progress-color=over #B48EAD
+
+font=FiraCode Nerd Font SemiBold 11
+border-size=1
+border-radius=12
+padding=12
+margin=6
+
+[urgency=low]
+default-timeout=1000
+
+[urgency=normal]
+default-timeout=1000
+
+[urgency=critical]
+default-timeout=0
+border-color=#EB6F92

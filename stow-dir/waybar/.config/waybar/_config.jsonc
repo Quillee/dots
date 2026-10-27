@@ -1,0 +1,106 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 36,
+    "margin-top": 6,
+    "margin-left": 8,
+    "margin-right": 8,
+    "spacing": 4,
+
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["group/stats", "network", "pulseaudio", "tray"],
+
+    "group/stats": {
+        "orientation": "horizontal",
+        "modules": ["cpu", "temperature", "memory", "disk"]
+    },
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "10"
+        },
+        "on-click": "activate",
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
+        }
+    },
+
+    "hyprland/window": {
+        "max-length": 50,
+        "separate-outputs": true
+    },
+
+    "cpu": {
+        "format": "  {usage}%",
+        "interval": 2,
+        "on-click": "kitty -e htop"
+    },
+
+    "memory": {
+        "format": "  {}%",
+        "interval": 2,
+        "on-click": "kitty -e htop"
+    },
+
+    "disk": {
+        "format": "  {percentage_used}%",
+        "interval": 30,
+        "path": "/"
+    },
+
+    "temperature": {
+        "format": "  {temperatureC}°C",
+        "format-critical": "  {temperatureC}°C",
+        "critical-threshold": 80,
+        "interval": 10
+    },
+
+    "network": {
+        "format-wifi": "  {signalStrength}%",
+        "format-ethernet": "  {ifname}",
+        "format-disconnected": "  disconnected",
+        "tooltip-format": "{essid} via {gwaddr}  {ifname}",
+        "interval": 5
+    },
+
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-muted": "  muted",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol",
+        "on-scroll-up": "pamixer -i 5",
+        "on-scroll-down": "pamixer -d 5"
+    },
+
+    "clock": {
+        "format": "  {:%a %d %b %H:%M}",
+        "interval": 60,
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "tray": {
+        "spacing": 8
+    }
+}

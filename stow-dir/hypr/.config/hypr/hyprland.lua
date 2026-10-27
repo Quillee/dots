@@ -5,12 +5,6 @@
 -- Resolve `require("hypr.<module>")` to ~/.config/hypr/<module>.lua
 package.path = os.getenv("HOME") .. "/.config/?.lua;" .. package.path
 
-hl.config({
-    cursor = {
-        no_hardware_cursors = false
-    }
-})
-
 require("hypr.looknfeel")
 require("hypr.windowrules")
 require("hypr.bindings")
