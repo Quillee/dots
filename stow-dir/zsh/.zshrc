@@ -4,7 +4,7 @@ if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
 fi # added by Nix installer
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -209,7 +209,19 @@ alias node_mod_rm="find . -name 'node_modules' -type d -prune -exec rm -rf '{}' 
 
 bindkey -s ^f "tmxs.sh\n"
 
+<<<<<<< Updated upstream
 export HOMEBREW_NO_AUTO_UPDATE=true
 
 # Claude Code aliases
 alias claudebr="CLAUDE_CODE_USE_BEDROCK=1 claude"
+=======
+>>>>>>> Stashed changes
+
+
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+[[ ! -r '/home/fenix/.opam/opam-init/init.zsh' ]] || source '/home/fenix/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+# END opam configuration

@@ -1,6 +1,10 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+<<<<<<< Updated upstream
 	branch = "master",
+=======
+    branch = "master",
+>>>>>>> Stashed changes
 
 	dependencies = {
 		"JoosepAlviste/nvim-ts-context-commentstring",

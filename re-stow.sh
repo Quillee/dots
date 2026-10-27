@@ -1,4 +1,4 @@
 cd stow-dir
 stow -D *
-stow -t ~/ *
+stow --adopt -t ~/ *
 cd ..

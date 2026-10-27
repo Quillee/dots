@@ -143,9 +143,12 @@ return {
 				["rust-analyzer"] = {},
 			},
 		})
+		-- ocamllsp is installed via opam (tied to the project's switch/compiler
+		-- version), not Mason, so it must be enabled explicitly here.
 		vim.lsp.config("ocamllsp", {
 			capabilities = capabilities,
 		})
+		vim.lsp.enable("ocamllsp")
 
 		-- html
 		vim.lsp.config("html", {
